@@ -1,0 +1,23 @@
+.img-hover {
+    cursor: pointer;
+    /* Thay đổi con trỏ khi hover */
+}
+
+.btn-hover {
+    cursor: grab;
+}
+.img-hover {
+    cursor: pointer;
+    /* Thay đổi con trỏ khi hover */
+}
+
+.btn-hover {
+    cursor: grab;
+}
+.product {
+    width: var(--wvs-single-product-item-width, 30px);
+}
+
+.list-color {
+    list-style: none;
+}

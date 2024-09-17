@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polo Store</title>
+    <link rel="icon" type="image/x-icon" href="/assest/images/logo/logo-polostore-3-1080x782.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .img-hover {
+            cursor: pointer;
+        }
+
+        .btn-hover {
+            cursor: grab;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Begin header -->
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand col-2" href="./index.html">
+                    <div>
+                        <img src="./assest/images/logo/logo-polostore-3-1080x782.png" class="w-75" alt="">
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">NEW ARRIVAL</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">ÁO NAM</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">QUẦN NAM</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">ĐỒ LÓT</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">SET ĐỒ BỘ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">BLOG</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- End header -->
+
+    <!-- Begin content -->
+    <section>
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="./assest/images/carosel/01.webp" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>First slide label</h5>
+                        <p>Some representative placeholder content for the first slide.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./assest/images/carosel/banner-PC.webp" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Second slide label</h5>
+                        <p>Some representative placeholder content for the second slide.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="./assest/images/carosel/NGANG.webp" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Third slide label</h5>
+                        <p>Some representative placeholder content for the third slide.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <!-- Begin danh mục -->
+        <div class="container-fluid mt-4">
+            <div class="border-bottom border-2">
+                <h3>DANH MỤC NỔI BẬT</h3>
+            </div>
+            <div class="row mt-5">
+                <div class="image-danhmuc col-xl-3">
+                    <div class="rounded-circle overflow-hidden">
+                        <img src="./assest/images/danhmuc/ao-thun-monter-passion-5-600x600.jpg" class="w-100" alt="">
+                    </div>
+                    <div class="text-center pt-3">
+                        <h5>ÁO THUN</h5>
+                    </div>
+                </div>
+                <div class="image-danhmuc col-xl-3">
+                    <div class="rounded-circle overflow-hidden">
+                        <img src="./assest/images/danhmuc/banner-do-lot-nam.jpg" class="w-100" alt="">
+                    </div>
+                    <div class="text-center pt-3">
+                        <h5>ĐỒ LÓT</h5>
+                    </div>
+                </div>
+                <div class="image-danhmuc col-xl-3">
+                    <div class="rounded-circle overflow-hidden">
+                        <img src="./assest/images/danhmuc/quan-short-kaki-p01-passion-5-600x600.jpg" class="w-100"
+                            alt="">
+                    </div>
+                    <div class="text-center pt-3">
+                        <h5>QUẦN NAM</h5>
+                    </div>
+                </div>
+                <div class="image-danhmuc col-xl-3">
+                    <div class="rounded-circle overflow-hidden">
+                        <img src="./assest/images/danhmuc/set-bo-superior-passion-3-600x600.jpg" class="w-100" alt="">
+                    </div>
+                    <div class="text-center pt-3">
+                        <h5>ÁO POLO</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End danh mục -->
+
+        <!-- Begin sản phẩm -->
+        <div class="container-fluid mt-5">
+            <div class="border-bottom border-2">
+                <h3>SẢN PHẨM MỚI</h3>
+            </div>
+            <div class="mt-4">
+                <a href="./sanpham.html" class="text-decoration-none text-black">
+                    <div class="card d-flex flex-column" style="width: 18rem;">
+                        <img src="./assest/images/products/image.jpg" class="card-img-top img-hover" alt="...">
+                        <div class="card-body">
+                            <h4 class="card-title text-body-secondary text-decoration-none">Áo Polo Nam</h4>
+                            <p>170.000 đ</p>
+                            <span>Phong cách sang trọng, đơn giản.</span>
+                            <a href="#" class="btn btn-primary btn-hover">Đặt hàng</a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- Kết thúc sản phẩm -->
+    </section>
+    <!-- End content -->
+
+    <!-- Begin footer -->
+    <footer>
+
+    </footer>
+    <!-- End footer -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
