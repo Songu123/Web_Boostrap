@@ -1,6 +1,5 @@
 .img-hover {
     cursor: pointer;
-    /* Thay đổi con trỏ khi hover */
 }
 
 .btn-hover {
@@ -8,7 +7,6 @@
 }
 .img-hover {
     cursor: pointer;
-    /* Thay đổi con trỏ khi hover */
 }
 
 .btn-hover {
@@ -21,3 +19,53 @@
 .list-color {
     list-style: none;
 }
+
+.custom-icon {
+    cursor: pointer;
+}
+
+/* Begin Slick */
+
+.slick-prev:before, .slick-next:before {
+    font-size: 40px;
+}
+
+.slick-prev {
+    left: 0 !important;
+}
+ .slick-next {
+    right: 20px !important;
+}
+.slick-prev, .slick-next {
+    z-index: 10;
+}
+
+.slick-prev:before, .slick-next:before {
+    font-size: 40px !important;
+}
+/* End Slick */
+
+/* Begin product-cart */
+.product-card img {
+    transition: transform 0.3s;
+}
+
+.product-card img:hover {
+    transform: scale(1.05);
+}
+
+.quick-view {
+    transition: opacity 0.3s;
+}
+
+.product-card:hover .quick-view {
+    display: block;
+    opacity: 1;
+}
+
+.card-img-top {
+    height: 250px;
+    object-fit: cover;
+}
+
+/* End product-cart */

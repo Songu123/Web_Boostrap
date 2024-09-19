@@ -8,15 +8,11 @@
     <link rel="icon" type="image/x-icon" href="/assest/images/logo/logo-polostore-3-1080x782.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <style>
-        .img-hover {
-            cursor: pointer;
-        }
+    <link rel="stylesheet" href="./assest/style.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
 
-        .btn-hover {
-            cursor: grab;
-        }
-    </style>
 </head>
 
 <body>
@@ -37,23 +33,23 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">NEW ARRIVAL</a>
+                        <li class="nav-item ">
+                            <a class="font-weight nav-link active" aria-current="page" href="#">NEW ARRIVAL</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">ÁO NAM</a>
+                        <li class="nav-item ">
+                            <a class="font-weight nav-link" href="#">ÁO NAM</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">QUẦN NAM</a>
+                        <li class="nav-item ">
+                            <a class="font-weight nav-link" href="#">QUẦN NAM</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">ĐỒ LÓT</a>
+                        <li class="nav-item ">
+                            <a class="font-weight nav-link" href="#">ĐỒ LÓT</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">SET ĐỒ BỘ</a>
+                        <li class="nav-item ">
+                            <a class="font-weight nav-link" href="#">SET ĐỒ BỘ</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">BLOG</a>
+                        <li class="nav-item ">
+                            <a class="font-weight nav-link" href="#">BLOG</a>
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
@@ -69,60 +65,109 @@
 
     <!-- Begin content -->
     <section class="container-fluid">
+        <!-- Breadcrumb -->
         <div class="mt-4">
-            <h4 class="text-body-secondary">TRANG CHỦ / ÁO NAM / ÁO POLO</h4>
+            <h6 class="text-secondary">TRANG CHỦ / ÁO NAM / ÁO POLO</h6>
         </div>
-        <div class="row mt-4 px-5">
-            <div class="col-6">
-                <img src="./assest/images/products/image.jpg" alt="">
+
+        <!-- Product Section -->
+        <div class="row mt-4 px-xl-5">
+            <!-- Product Image -->
+            <div class="col-lg-6 col-md-12">
+                <img src="./assest/images/products/image.jpg" class="img-fluid rounded" alt="Áo Polo Nam Bird">
             </div>
-            <div class="col-6">
-                <h3>Áo Polo Nam Bird</h3>
-                <h4>160.000 đ</h4>
-                <ul>
-                    <li><b>Chất liệu: </b>Thun cá sấu cotton lục giác. Chất mềm mát, thấm mồ hôi tốt, co giãn 4 chiều</li>
-                    <li><b>Size: </b>M(45-55) – L(55-65) – XL(65-75) – XXL(75-85) – XXXL(85-95)</li>
+
+            <!-- Product Details -->
+            <div class="col-lg-6 col-md-12">
+                <h3 class="fw-bold">Áo Polo Nam Bird</h3>
+                <h4 class="text-danger">160.000 đ</h4>
+
+                <!-- Product Info -->
+                <ul class="">
+                    <li><strong>Chất liệu: </strong>Thun cá sấu cotton lục giác, mềm mát, thấm mồ hôi tốt, co giãn 4
+                        chiều.</li>
+                    <li><strong>Size: </strong>M (45-55) – L (55-65) – XL (65-75) – XXL (75-85) – XXXL (85-95)</li>
                 </ul>
-                <div class="">
-                    <div class="">
-                        <span class="mt-3">Màu sắc <b class="fw-bold text-body-secondary fs-5">Nâu</b></span>
+
+                <!-- Color Options -->
+                <div class="mt-3">
+                    <div class="d-flex align-items-center">
+                        <span>Màu sắc:</span>
+                        <b class="fw-bold text-secondary fs-5 ms-2">Nâu</b>
                     </div>
-                    <ul class="list-color d-flex">
-                        <li class="img-hover product border border-2 rounded-1 m-2"><img src="./assest/images/products/image.jpg" class="w-100 p-1" alt=""></li>
-                        <li class="img-hover product border border-2 rounded-1 m-2"><img src="./assest/images/products/z5018069269739-aa5c5764d2d4602bb8b55ec50edad312-600x600.jpg" class="w-100 p-1" alt=""></li>
-                        <li class="img-hover product border border-2 rounded-1 m-2"><img src="./assest/images/products/z5018069269739-aa5c5764d2d4602bb8b55ec50edad312-600x600.jpg" class="w-100 p-1" alt=""></li>
+
+                    <ul class="list-unstyled d-flex mt-2">
+                        <li class="img-hover product border border-2 rounded-1 m-2">
+                            <img src="./assest/images/products/image.jpg" class="w-100 p-1 rounded" alt="Màu nâu">
+                        </li>
+                        <li class="img-hover product border border-2 rounded-1 m-2">
+                            <img src="./assest/images/products/z5018069269739-aa5c5764d2d4602bb8b55ec50edad312-600x600.jpg"
+                                class="w-100 p-1 rounded" alt="Màu khác">
+                        </li>
+                        <li class="img-hover product border border-2 rounded-1 m-2">
+                            <img src="./assest/images/products/z5018069269739-aa5c5764d2d4602bb8b55ec50edad312-600x600.jpg"
+                                class="w-100 p-1 rounded" alt="Màu khác">
+                        </li>
                     </ul>
                 </div>
-                <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-warning">Thêm vào giỏ hàng</button>
+
+                <!-- Add to Cart Button -->
+                <div class="d-flex justify-content-center mt-4">
+                    <button type="button" class="btn btn-warning px-4 py-2">Thêm vào giỏ hàng</button>
+                </div>
+                <div class="d-flex justify-content-between p-4 mt-5 text-body-secondary">
+                    <div class="">
+                        <p>Freeship<br>đơn hàng<br>từ 300k</p>
+                    </div>
+                    <div class="">
+                        <p>Kiểm tra <br> hàng trước <br> khi thanh <br> toán</p>
+                    </div>
+                    <div class="">
+                        <p>Đổi hàng <br> trong vòng <br> 30 ngày</p>
+                    </div>
+
                 </div>
             </div>
         </div>
-        <div class="container-fluid mt-4"></div>
-            <div class="border-bottom border-2">
+
+        <!-- Description Section -->
+        <div class="container-fluid mt-5">
+            <div class="border-bottom border-2 mb-4">
                 <h3>MÔ TẢ</h3>
             </div>
-            <div class="p-5">
-                <h2>Áo polo nam Bird</h2>
+            <div class="p-4 bg-light">
+                <h4 class="fw-bold">Áo polo nam Bird</h4>
                 <ul>
-                    <li>Để nói đến sự đơn giản mà không kém phần nổi bật phải kể đến Polo Bird – Được thiết kế basic sang trọng, phù hợp với mọi độ tuổi phái mạnh.</li>
-                    <li>Chất liệu cotton lục giác mềm mát, thấm hút nhanh, mắt vải lớn tạo cảm giác thông thoáng nhất cho người mặc.</li>
-                    <li>Điểm nhấn trong tổng thể áo là phần bo dệt họa tiết kẻ sọc ở tay và cổ áo, sự phối màu hoàn hảo mang lại sự trẻ trung và sang trọng hơn.</li>
-                    <li>Nếu anh em yêu thích phong cách đơn giản, lịch lãm, sang trọng thì polo Bird là một gợi ý tuyệt vời.</li>
+                    <li>Đơn giản mà nổi bật với thiết kế basic sang trọng, phù hợp với mọi độ tuổi phái mạnh.</li>
+                    <li>Chất liệu cotton lục giác mềm mát, thấm hút nhanh, tạo cảm giác thông thoáng khi mặc.</li>
+                    <li>Phần bo dệt họa tiết kẻ sọc ở tay và cổ áo, phối màu hài hòa mang lại sự trẻ trung và sang
+                        trọng.</li>
+                    <li>Lựa chọn hoàn hảo cho những ai yêu thích phong cách đơn giản, lịch lãm.</li>
                 </ul>
             </div>
         </div>
     </section>
     <!-- End content -->
 
+
     <!-- Begin footer -->
     <footer>
 
     </footer>
     <!-- End footer -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="slick/slick.min.js"></script>
+
+    <script type="text/javascript">
+        $('.your-class').slick({
+            settingName: 'settingValue'
+        });
+    </script>    
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
