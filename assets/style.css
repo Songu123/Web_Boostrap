@@ -52,6 +52,7 @@
 .slick-prev:before,
 .slick-next:before {
     font-size: 40px;
+    color: #000 !important;
 }
 
 .slick-prev {
@@ -73,6 +74,31 @@
 }
 
 /* End Slick */
+
+/* Begin header */
+.navbar {
+    top: 0;
+    transition: top 0.3s;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+}
+
+/* End header */
+
+
+/* Begin section */
+#carouselExampleCaptions {
+    top: 90px;
+}
+
+.category {
+    margin-top: 7.8rem;
+}
+
+.section-top-90 {
+    margin-top: 120px !important;
+}
 
 /* Begin product-cart */
 .product-card img {
@@ -98,3 +124,15 @@
 }
 
 /* End product-cart */
+/* End section */
+
+/* Begin footer */
+.is-divider {
+    background-color:#fff;
+    display: block;
+    height: 3px;
+    margin: 1em 0;
+    max-width: 30px;
+    width: 100%;
+}
+/* End footer */
