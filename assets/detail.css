@@ -1,0 +1,40 @@
+/* Tạo khoảng cách và bóng đổ cho phần tử */
+.row.g-4 {
+    gap: 2rem;
+}
+
+.shadow {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="number"] {
+    width: 50px;
+    font-size: 1rem;
+    border: none;
+}
+
+button {
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.quantity button {
+    border: none;
+}
+
+.quantity input {
+    width: 60px;
+}
+
+/* Tạo sự tương tác mượt mà cho nút bấm */
+.btn {
+    transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}

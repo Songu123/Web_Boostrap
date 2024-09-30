@@ -1,0 +1,33 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  --text-color: #333;
+  color: var(--text-color);
+  background-color: #e0f0fd;
+}
+/* Icons google */
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+/* End icons google */
+
+.container {
+  text-align: center;
+  margin: auto;
+  color: #181818;
+  min-height: 90vh;
+  margin-top: 2%;
+}
+
+/* set width img */
+.w-img {
+  width: 100px;
+}
+
+/* End set width img */

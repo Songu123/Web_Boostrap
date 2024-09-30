@@ -19,18 +19,24 @@
     <!-- Begin header -->
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            
             <div class="container-fluid">
-                <a class="navbar-brand col-2" href="./index.html">
-                    <div class="px-4">
-                        <img src="./assets/images/logo/logo-polostore-3-1080x782.png" class="w-50" alt="">
-                    </div>
-                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
+                <div class=""></div>
+                <a class="navbar-brand col-5 col-lg-2" href="./index.html">
+                    <div class="px-4">
+                        <img src="./assets/images/logo/logo-polostore-3-1080x782.png" class="w-50" alt="">
+                    </div>
+                </a>
+
+                <a class="text-dark d-lg-none" href=""><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
+                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"></path>
+                  </svg></a>
+                
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
@@ -53,7 +59,9 @@
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <div class="">
+                            <input class="form-control me-2 position-relative" type="search" placeholder="Search" aria-label="Search">
+                        </div>
                         <div class="d-flex justify-content-center align-items-center px-3">
                             <a href="./login.html">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
@@ -135,7 +143,7 @@
                 <h3>DANH MỤC NỔI BẬT</h3>
             </div>
             <div class="row mt-4">
-                <div class="image-danhmuc col-xl-3">
+                <div class="image-danhmuc col-md-3">
                     <div class="rounded-circle overflow-hidden">
                         <img src="./assets/images/danhmuc/ao-thun-monter-passion-5-600x600.jpg" class="w-100" alt="">
                     </div>
@@ -143,7 +151,7 @@
                         <h5>ÁO THUN</h5>
                     </div>
                 </div>
-                <div class="image-danhmuc col-xl-3">
+                <div class="image-danhmuc col-md-3">
                     <div class="rounded-circle overflow-hidden">
                         <img src="./assets/images/danhmuc/banner-do-lot-nam.jpg" class="w-100" alt="">
                     </div>
@@ -151,7 +159,7 @@
                         <h5>ĐỒ LÓT</h5>
                     </div>
                 </div>
-                <div class="image-danhmuc col-xl-3">
+                <div class="image-danhmuc col-md-3">
                     <div class="rounded-circle overflow-hidden">
                         <img src="./assets/images/danhmuc/quan-short-kaki-p01-passion-5-600x600.jpg" class="w-100"
                             alt="">
@@ -160,7 +168,7 @@
                         <h5>QUẦN NAM</h5>
                     </div>
                 </div>
-                <div class="image-danhmuc col-xl-3">
+                <div class="image-danhmuc col-md-3">
                     <div class="rounded-circle overflow-hidden">
                         <img src="./assets/images/danhmuc/set-bo-superior-passion-3-600x600.jpg" class="w-100" alt="">
                     </div>
@@ -178,34 +186,41 @@
             <div class="border-bottom border-2">
                 <h3>SẢN PHẨM MỚI</h3>
             </div>
-            <div class="mt-4 your-class" data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'>
+            <div id="aopolo-product" class="mt-4 your-class" data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'>
                 <div class="col-md-3 px-3">
                     <a href="./sanpham.html" class="text-decoration-none">
                         <div class="card product-card shadow-sm">
                             <div class="position-relative overflow-hidden">
                                 <img src="./assets/images/products/image.jpg" class="card-img-top" alt="Product Image">
+                                <img src="./assets/images/products/z4904974071885-559ad89cb6cb19d9d56cfe0dd228483b-600x600.jpg" class="product-card-img position-absolute card-img-top top-0 d-none" alt="Product Image">
                                 <div
                                     class="position-absolute top-50 start-50 translate-middle bg-dark text-white p-2 rounded quick-view d-none">
                                     QUICK VIEW
                                 </div>
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Áo polo nam Bird</h5>
-                                <p class="price fw-bold">170.000 ₫</p>
-                                <p class="text-muted">Màu sắc</p>
-                                <div class="d-flex">
-                                    <img src="./assets/images/products/image.jpg" alt="color1"
-                                        class="rounded-circle me-2" width="30" height="30">
-                                    <img src="./assets/images/products/z5018069269739-aa5c5764d2d4602bb8b55ec50edad312-600x600.jpg"
-                                        alt="color2" class="rounded-circle me-2" width="30" height="30">
-                                    <img src="./assets/images/products/image.jpg" alt="color3" class="rounded-circle"
-                                        width="30" height="30">
+                                <div class="">
+                                    <h5 class="card-title">Áo polo nam Bird</h5>
+                                    <p class="price fw-bold">170.000 ₫</p>
+                                </div>
+                                <div class="">
+                                    <div class="d-flex">
+                                        <p class="text-muted">Màu sắc</p>
+                                        <div class="d-flex ps-2">
+                                            <img src="./assets/images/products/image.jpg" alt="color1"
+                                            class="rounded-circle me-2" width="30" height="30">
+                                            <img src="./assets/images/products/z5018069269739-aa5c5764d2d4602bb8b55ec50edad312-600x600.jpg"
+                                            alt="color2" class="rounded-circle me-2" width="30" height="30">
+                                            <img src="./assets/images/products/image.jpg" alt="color3" class="rounded-circle"
+                                            width="30" height="30">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3 px-3">
+                <!-- <div class="col-md-3 px-3">
                     <a href="./sanpham.html" class="text-decoration-none">
                         <div class="card product-card shadow-sm">
                             <div class="position-relative overflow-hidden">
@@ -366,7 +381,7 @@
                             </div>
                         </div>
                     </a>
-                </div>
+                </div> -->
             </div>
             <div class="mt-4 d-flex justify-content-center">
                 <button class="px-3 py-2 d-flex fw-bold rounded-2">Xem tất cả <svg xmlns="http://www.w3.org/2000/svg" width="30"
@@ -430,7 +445,7 @@
     </footer>
     <!-- End footer -->
 
-    <script src="./assets/form.js"></script>
+    <script src="./assets/app.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="./slick-1.8.1/slick/slick.min.js"></script>
