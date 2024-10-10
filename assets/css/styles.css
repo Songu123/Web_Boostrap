@@ -14,11 +14,11 @@ body, html {
 
 /* END RESET */
 .text-color {
-    color: hsla(0, 0%, 40%, .85);
+    color: hsla(0, 0%, 40%, .85) !important;
 }
 
 .bg-main {
-    background-color: hsla(0, 0%, 40%, .85);
+    background-color: hsla(0, 0%, 40%, .85) !important;
 }
 
 .input-color {

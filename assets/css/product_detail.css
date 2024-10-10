@@ -1,3 +1,24 @@
+
+.bg-button {
+  background-color: #d26e4b;
+  color: #fff;
+}
+
+.bg-main-detail {
+  background-color: hsla(0, 0%, 40%, .85);
+  color: #fff;
+}
+
+.bg-main-detail:hover {
+  background-color: hsla(0, 5%, 70%, 0.85);
+  color: #fff;
+}
+
+.bg-button:hover {
+  background-color: #daa18c;
+  color: #fff;
+  /* transition: .5s ease-in-out; */
+}
 .icon-hover:hover {
     border-color: #3b71ca !important;
     background-color: white !important;
@@ -11,3 +32,28 @@
   section {
     margin-top: 150px;
   }
+
+  /* .product-describe_main:hover .product-describe_content {
+    opacity: 1;
+    max-height: max-content;
+    visibility: inherit;
+  } */
+
+  .product-describe_content {
+    opacity: 0;
+    max-height: 0;
+    visibility: hidden;
+    overflow: hidden; /* Hide content when max-height is 0 */
+    transition: opacity 0.5s ease-in-out, max-height 0.5s ease-in-out, visibility 0s 0.5s;
+}
+
+.xuathien {
+    max-height: 1000px; /* Use a large enough value instead of max-content */
+    opacity: 1;
+    visibility: visible;
+    transition:  max-height 0.5s ease-in-out;
+}
+
+.xoay {
+  transform: rotate(180deg);
+}
