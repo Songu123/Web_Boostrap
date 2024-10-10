@@ -18,3 +18,39 @@ giam.addEventListener('click', function() {
     }
     quantity_product.value = currentQuantity;
 });
+
+
+
+function calcTotal() {
+    var product_price = document.querySelector(".product-price");
+
+    var price = Number(product_price.innerHTML.replace(/\./g, ""));
+
+    var product_quantity = Number(document.querySelector("#quantity_product").value);
+
+    var price_value = price * product_quantity;
+
+    console.log(price_value);
+
+    var price_tamtinh = document.querySelector(".tamtinh");
+
+    price_tamtinh.innerHTML = price_value.toLocaleString(); 
+}
+
+
+function increaseQuantity() {
+    var quantityInput = document.querySelector("#quantity_product");
+    var currentQuantity = Number(quantityInput.value);
+    quantityInput.value = currentQuantity + 1; 
+    calcTotal(); 
+}
+
+function decreaseQuantity() {
+    var quantityInput = document.querySelector("#quantity_product");
+    var currentQuantity = Number(quantityInput.value);
+    if (currentQuantity > 1) { 
+        quantityInput.value = currentQuantity - 1; 
+        calcTotal(); // 
+    }
+}
+

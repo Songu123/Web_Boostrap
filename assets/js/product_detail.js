@@ -21,7 +21,7 @@ function loadProductDetail(id) {
         container_detail.innerHTML = `
         <div class="row gx-5">
         <aside class="col-lg-6">
-          <div class="border rounded-4 mb-3 d-flex justify-content-center">
+          <div class="mb-3 d-flex justify-content-center">
             <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image"
               href="https://mdbcdn.b-cdn.net/img/bootstrap-ecommerce/items/detail1/big.webp">
               <img style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit"
@@ -75,13 +75,13 @@ function loadProductDetail(id) {
                   4.5
                 </span>
               </div>
-              <span class="text-muted"><i class="fas fa-shopping-basket fa-sm mx-1"></i>154 orders</span>
-              <span class="text-success ms-2">In stock</span>
+              <span class="text-muted"><i class="fas fa-shopping-basket fa-sm mx-1"></i>154 đơn hàng</span>
+              <span class="text-success ms-2">Còn hàng</span>
             </div>
 
             <div class="mb-3">
             <span class="h5">${product.price} đ</span>
-              <span class="text-muted">/per box</span>
+              <span class="text-muted">/sản phẩm</span>
             </div>
 
             <p>
@@ -89,16 +89,16 @@ function loadProductDetail(id) {
             </p>
 
             <div class="row">
-              <dt class="col-3">Type:</dt>
+              <dt class="col-3">Kiểu: </dt>
               <dd class="col-9">Regular</dd>
 
-              <dt class="col-3">Color</dt>
+              <dt class="col-3">Màu sắc: </dt>
               <dd class="col-9">Brown</dd>
 
-              <dt class="col-3">Material</dt>
+              <dt class="col-3">Vật liệu: </dt>
               <dd class="col-9">Cotton, Jeans</dd>
 
-              <dt class="col-3">Brand</dt>
+              <dt class="col-3">Brand: </dt>
               <dd class="col-9">Reebook</dd>
             </div>
 
@@ -130,8 +130,8 @@ function loadProductDetail(id) {
                 </div>
               </div>
             </div>
-            <a href="#" class="btn btn-warning shadow-0"> Mua ngày </a>
-            <button type="button" class="btn btn-primary" id="toastbtn">Thêm vào giỏ hàng</button>
+            <a href="#" class="btn bg-main-detail shadow-0"> Mua ngay </a>
+            <button type="button" class="btn bg-button" id="toastbtn">Thêm vào giỏ hàng</button>
             <div class="thongbao toast-container position-fixed top-0 end-0 p-3">
               <div class="toast bg-main text-white" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
@@ -144,7 +144,7 @@ function loadProductDetail(id) {
               </div>
             </div>
             <a href="#" class="btn btn-light border border-secondary py-2 icon-hover px-3"> <i
-                class="me-1 fa fa-heart fa-lg"></i> Save </a>
+                class="me-1 fa fa-heart fa-lg"></i> Lưu </a>
           </div>
         </main>
       </div>`;
@@ -183,3 +183,30 @@ window.onload = function () {
         });
     }
 };
+
+
+// Xử lý ẩn hiện mô tả sản phẩm
+
+// Select all describe main sections and toggle buttons
+const describe_main = document.querySelectorAll(".product-describe_main");
+const toggle_Btns = document.querySelectorAll(".toggleBtn");
+
+// Loop through each section and attach click events
+describe_main.forEach((main, index) => {
+  const content = main.nextElementSibling;  // Select the next sibling (product-describe_content)
+  const toggle_Btn = toggle_Btns[index];  // Get the corresponding toggle button
+
+  main.addEventListener('click', () => {
+    console.log("Bạn đã click!");
+
+    // Toggle the visibility of the content and rotate the button
+    content.classList.toggle("xuathien");
+    toggle_Btn.classList.toggle("xoay");
+  });
+});
+
+
+// End Xử lý ẩn hiện mô tả sản phẩm
+
+
+// Xử lý xoay tròn icon

@@ -1,11 +1,14 @@
+/* td {
+    text-align: center;
+    vertical-align: middle;
+} */
+
 #main_content {
     margin-top: 10rem;
 }
 
-.text-name-product {
-    
-}
+.text-name-product {}
 
 .text-cart {
-     font-size: .8rem;
+    font-size: .8rem;
 }
