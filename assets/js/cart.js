@@ -1,56 +1,110 @@
-const giam = document.getElementById('button-addon1');
-const tang = document.getElementById('button-addon2');
-const quantity_product = document.getElementById('quantity_product');
+// Render giá trị vào bảng giỏ hàng
+displayCart();
 
-// Chuyển giá trị hiện tại trong input thành số nguyên
-let currentQuantity = parseInt(quantity_product.value);
+// const giam = document.getElementById('button-addon1');
+// const tang = document.getElementById('button-addon2');
+// const quantity_product = document.getElementById('quantity_product');
 
-// Xử lý khi nhấn nút tăng
-tang.addEventListener('click', function() {
-    currentQuantity += 1;
-    quantity_product.value = currentQuantity;
-});
+// // Chuyển giá trị hiện tại trong input thành số nguyên
+// let currentQuantity = parseInt(quantity_product.value);
 
-// Xử lý khi nhấn nút giảm
-giam.addEventListener('click', function() {
+// // Xử lý khi nhấn nút tăng
+// tang.addEventListener('click', function () {
+//     currentQuantity += 1;
+//     quantity_product.value = currentQuantity;
+// });
+
+// // Xử lý khi nhấn nút giảm
+// giam.addEventListener('click', function () {
+//     if (currentQuantity > 1) {
+//         currentQuantity -= 1;
+//     }
+//     quantity_product.value = currentQuantity;
+// });
+
+
+
+function calcTotal(productId) {
+    var quantityInput = document.querySelector(`#quantity_product_${productId}`);
+    var productPriceElement = document.querySelector(`.product-price[data-id="${productId}"]`);
+
+    if (quantityInput && productPriceElement) {
+        var price = Number(productPriceElement.innerHTML.replace(/\./g, ""));
+        var product_quantity = Number(quantityInput.value);
+        var price_value = price * product_quantity;
+
+        var price_tamtinh = document.querySelector(`.tamtinh[data-id="${productId}"]`);
+        if (price_tamtinh) {
+            price_tamtinh.innerHTML = price_value.toLocaleString();
+        }
+    }
+}
+
+function increaseQuantity(productId) {
+    var quantityInput = document.querySelector(`#quantity_product_${productId}`);
+    var currentQuantity = Number(quantityInput.value);
+    quantityInput.value = currentQuantity + 1;
+    calcTotal(productId); // Update total for this specific product
+}
+
+function decreaseQuantity(productId) {
+    var quantityInput = document.querySelector(`#quantity_product_${productId}`);
+    var currentQuantity = Number(quantityInput.value);
     if (currentQuantity > 1) {
-        currentQuantity -= 1;
-    }
-    quantity_product.value = currentQuantity;
-});
-
-
-
-function calcTotal() {
-    var product_price = document.querySelector(".product-price");
-
-    var price = Number(product_price.innerHTML.replace(/\./g, ""));
-
-    var product_quantity = Number(document.querySelector("#quantity_product").value);
-
-    var price_value = price * product_quantity;
-
-    console.log(price_value);
-
-    var price_tamtinh = document.querySelector(".tamtinh");
-
-    price_tamtinh.innerHTML = price_value.toLocaleString(); 
-}
-
-
-function increaseQuantity() {
-    var quantityInput = document.querySelector("#quantity_product");
-    var currentQuantity = Number(quantityInput.value);
-    quantityInput.value = currentQuantity + 1; 
-    calcTotal(); 
-}
-
-function decreaseQuantity() {
-    var quantityInput = document.querySelector("#quantity_product");
-    var currentQuantity = Number(quantityInput.value);
-    if (currentQuantity > 1) { 
-        quantityInput.value = currentQuantity - 1; 
-        calcTotal(); // 
+        quantityInput.value = currentQuantity - 1;
+        calcTotal(productId); // Update total for this specific product
     }
 }
 
+function displayCart() {
+    const carts = JSON.parse(localStorage.getItem('carts')) || [];
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+    var table_cart = document.querySelector(".table-cart-content");
+    table_cart.innerHTML = ""; // Clear existing content
+
+    // Iterate through each cart item
+    carts.forEach(cart => {
+        const product = products.find(product => product.id === cart.id);
+
+        if (product) { // Check if the product exists
+            var price = Number(product.price.replace(/\./g, ""));
+            var product_quantity = Number(cart.quantity);
+            var price_value = (price * product_quantity).toLocaleString();
+
+            table_cart.innerHTML += `
+                <tr>
+                    <td class="col-5">
+                        <div class="d-flex align-items-center">
+                            <button type="button" class="btn-close border border-1 px-3 py-2" aria-label="Close" onclick="deleteCart('${cart.id}', '${cart.size}')"></button>
+                            <div class="col-4 p-2 me-1">
+                                <img src="${product.img1}" class="w-100" alt="">
+                            </div>
+                            <div class="col-6 d-flex flex-column justify-content-center">
+                                <p class="fw-light d-inline mb-1">${product.name}</p>
+                                <p class="text-color mb-1 text-cart"><b>Màu sắc: </b>Xanh đen</p>
+                                <p class="text-color mb-1 text-cart"><b>Size: </b>${cart.size}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="fw-bold align-middle"><span class="product-price" data-id="${cart.id}">${product.price}</span> đ</td>
+                    <td class="align-middle">
+                        <div class="input-group" style="width: 120px;">
+                            <button class="btn btn-white border border-secondary" type="button"
+                                    onclick="decreaseQuantity('${cart.id}')">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <input id="quantity_product_${cart.id}" 
+                                   class="quantity_product form-control text-center border border-secondary"
+                                   value="${cart.quantity}" oninput="calcTotal('${cart.id}')" />
+                            <button class="btn btn-white border border-secondary" type="button"
+                                    onclick="increaseQuantity('${cart.id}')">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </td>
+                    <td class="fw-bold align-middle"><span class="tamtinh" data-id="${cart.id}">${price_value}</span> đ</td>
+                </tr>
+            `;
+        }
+    });
+}

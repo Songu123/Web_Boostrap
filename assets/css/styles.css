@@ -21,6 +21,11 @@ body, html {
     background-color: hsla(0, 0%, 40%, .85) !important;
 }
 
+.bg-button {
+    background-color: #d26e4b;
+    color: #fff;
+  }
+
 .input-color {
     background-color: rgba(0,0,0,.03);
 }
@@ -271,7 +276,7 @@ form input:focus {
 }
 
 .cart-list {
-    height: 18rem;
+    max-height: 18rem;
     overflow-y: auto;
 }
 
