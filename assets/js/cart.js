@@ -39,7 +39,7 @@ function calcTotal(productId, size) {
         }
     }
 
-    displayCart()
+    // displayCart()
 
 }
 
