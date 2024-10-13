@@ -22,37 +22,38 @@ displayCart();
 //     quantity_product.value = currentQuantity;
 // });
 
-
-
-function calcTotal(productId) {
-    var quantityInput = document.querySelector(`#quantity_product_${productId}`);
-    var productPriceElement = document.querySelector(`.product-price[data-id="${productId}"]`);
+function calcTotal(productId, size) {
+    var quantityInput = document.querySelector(`#quantity_product_${productId}_${size}`);
+    var productPriceElement = document.querySelector(`.product-price[data-id="${productId}_${size}"]`);
 
     if (quantityInput && productPriceElement) {
         var price = Number(productPriceElement.innerHTML.replace(/\./g, ""));
         var product_quantity = Number(quantityInput.value);
         var price_value = price * product_quantity;
 
-        var price_tamtinh = document.querySelector(`.tamtinh[data-id="${productId}"]`);
+        var price_tamtinh = document.querySelector(`.tamtinh[data-id="${productId}_${size}"]`);
         if (price_tamtinh) {
             price_tamtinh.innerHTML = price_value.toLocaleString();
         }
     }
+
+    // displayCart()
+
 }
 
-function increaseQuantity(productId) {
-    var quantityInput = document.querySelector(`#quantity_product_${productId}`);
+function increaseQuantity(productId, size) {
+    var quantityInput = document.querySelector(`#quantity_product_${productId}_${size}`);
     var currentQuantity = Number(quantityInput.value);
     quantityInput.value = currentQuantity + 1;
-    calcTotal(productId); // Update total for this specific product
+    calcTotal(productId, size); // Update total for this specific product
 }
 
-function decreaseQuantity(productId) {
-    var quantityInput = document.querySelector(`#quantity_product_${productId}`);
+function decreaseQuantity(productId, size) {
+    var quantityInput = document.querySelector(`#quantity_product_${productId}_${size}`);
     var currentQuantity = Number(quantityInput.value);
     if (currentQuantity > 1) {
         quantityInput.value = currentQuantity - 1;
-        calcTotal(productId); // Update total for this specific product
+        calcTotal(productId, size); // Update total for this specific product
     }
 }
 
@@ -60,6 +61,7 @@ function displayCart() {
     const carts = JSON.parse(localStorage.getItem('carts')) || [];
     const products = JSON.parse(localStorage.getItem('products')) || [];
     var table_cart = document.querySelector(".table-cart-content");
+    var tongtien = 0;
     table_cart.innerHTML = ""; // Clear existing content
 
     // Iterate through each cart item
@@ -69,8 +71,8 @@ function displayCart() {
         if (product) { // Check if the product exists
             var price = Number(product.price.replace(/\./g, ""));
             var product_quantity = Number(cart.quantity);
-            var price_value = (price * product_quantity).toLocaleString();
-
+            var price_value = (price * product_quantity);
+            tongtien += price_value;
             table_cart.innerHTML += `
                 <tr>
                     <td class="col-5">
@@ -86,25 +88,27 @@ function displayCart() {
                             </div>
                         </div>
                     </td>
-                    <td class="fw-bold align-middle"><span class="product-price" data-id="${cart.id}">${product.price}</span> đ</td>
+                    <td class="fw-bold align-middle"><span class="product-price" data-id="${cart.id}_${cart.size}">${product.price}</span> đ</td>
                     <td class="align-middle">
                         <div class="input-group" style="width: 120px;">
                             <button class="btn btn-white border border-secondary" type="button"
-                                    onclick="decreaseQuantity('${cart.id}')">
+                                    onclick="decreaseQuantity('${cart.id}','${cart.size}')">
                                 <i class="fas fa-minus"></i>
                             </button>
-                            <input id="quantity_product_${cart.id}" 
+                            <input id="quantity_product_${cart.id}_${cart.size}" 
                                    class="quantity_product form-control text-center border border-secondary"
-                                   value="${cart.quantity}" oninput="calcTotal('${cart.id}')" />
+                                   value="${cart.quantity}" oninput="calcTotal('${cart.id}','${cart.size}')" />
                             <button class="btn btn-white border border-secondary" type="button"
-                                    onclick="increaseQuantity('${cart.id}')">
+                                    onclick="increaseQuantity('${cart.id}','${cart.size}')">
                                 <i class="fas fa-plus"></i>
                             </button>
                         </div>
                     </td>
-                    <td class="fw-bold align-middle"><span class="tamtinh" data-id="${cart.id}">${price_value}</span> đ</td>
+                    <td class="fw-bold align-middle"><span class="tamtinh" data-id="${cart.id}_${cart.size}">${price_value.toLocaleString()}</span> đ</td>
                 </tr>
             `;
         }
     });
+
+    // console.log("tong tien = " + tongtien);
 }
