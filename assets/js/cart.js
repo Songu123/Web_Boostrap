@@ -22,8 +22,6 @@ displayCart();
 //     quantity_product.value = currentQuantity;
 // });
 
-
-
 function calcTotal(productId, size) {
     var quantityInput = document.querySelector(`#quantity_product_${productId}_${size}`);
     var productPriceElement = document.querySelector(`.product-price[data-id="${productId}_${size}"]`);
@@ -112,5 +110,5 @@ function displayCart() {
         }
     });
 
-    console.log("tong tien = " + tongtien);
+    // console.log("tong tien = " + tongtien);
 }
