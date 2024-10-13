@@ -254,7 +254,7 @@
                                         d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
                                 </svg>
                                 <span
-                                    class="position-absolute top-75 start-75 translate-middle badge rounded-pill bg-danger">
+                                    class="cart-item-quantity bg-button position-absolute top-75 start-75 translate-middle badge rounded-pill">
                                     2
                                     <span class="visually-hidden">unread messages</span>
                                 </span>
@@ -296,7 +296,8 @@
                                     <button type="button" class="btn btn-dark w-100">
                                         <a href="#" class="text-decoration-none text-light">XEM GIỎ HÀNG</a>
                                     </button>
-                                    <button type="button" class="btn btn-warning w-100 mt-2">THANH TOÁN</button>
+                                    <button type="button" class="bg-button btn btn-warning w-100 mt-2">THANH
+                                        TOÁN</button>
                                 </div>
                             </div>
                         </div>
@@ -405,13 +406,23 @@
                     <a href="./sanpham.html" class="text-decoration-none">
                         <div class="card product-card shadow-sm">
                             <div class="position-relative overflow-hidden">
-                                <img src="./assets/images/products/image.jpg" class="card-img-top" alt="Product Image">
-                                <img src="./assets/images/products/z4992841998680-772f8320491b4f66c8a475b5fe3f0816-600x600.jpg"
-                                    class="product-card-img position-absolute card-img-top top-0 d-none"
-                                    alt="Product Image">
-                                <div
-                                    class="position-absolute top-50 start-50 translate-middle bg-dark text-white p-2 rounded quick-view d-none">
-                                    QUICK VIEW
+                                <div class="img-container w-100">
+                                    <img src="./assets/images/products/image.jpg" class="card-img-top"
+                                        alt="Product Image">
+                                    <img src="./assets/images/products/z4992841998680-772f8320491b4f66c8a475b5fe3f0816-600x600.jpg"
+                                        class="position-absolute card-img-bottom top-0"
+                                        alt="Product Image">
+                                    <div
+                                        class="position-absolute bottom-0 start-0 text-center w-100 bg-dark text-white p-2 quick-view">
+                                        QUICK VIEW
+                                    </div>
+                                    <button class="loving-product position-absolute top-0 end-0 rounded-circle">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                            fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                                        </svg>
+                                    </button>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -708,6 +719,7 @@
     </footer>
     <!-- End footer -->
 
+    <script src="./assets/js/product_detail.js"></script>
     <script src="./assets/js/app.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
