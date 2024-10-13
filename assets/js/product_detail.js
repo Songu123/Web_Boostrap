@@ -1,4 +1,6 @@
-displayCart()
+getQuantityCart();
+
+displaySubCart();
 // Hàm lấy tham số query từ URL
 function getQueryParam(param) {
   const urlParams = new URLSearchParams(window.location.search);
@@ -12,31 +14,51 @@ const product_Id = getQueryParam('id');
 
 // Lấy dữ liệu sản phẩm từ localStorage
 
+// Hàm lấy số lượng sản phẩm trong giỏ hàng
+function getQuantityCart() {
+  var carts = JSON.parse(localStorage.getItem('carts')) || [];
+  var tongtien = 0;
+  var cart_quantity = document.querySelector(".cart-item-quantity");
+
+  carts.forEach(cart => {
+    tongtien += cart.quantity;
+  });
+
+  console.log("Tổng sản phẩm giỏ hàng: " + tongtien);
+
+  // Check if cart_quantity exists before updating its innerHTML
+  if (cart_quantity) {
+    cart_quantity.innerHTML = `${tongtien}`;
+  }
+}
+
+
+// Hàm xoá sản phẩm trong giỏ hàng
 function deleteCart(id, size) {
-  // Retrieve the cart items from localStorage
+
   var carts = JSON.parse(localStorage.getItem('carts')) || [];
 
-  // Filter out the cart item that matches the ID and size
   const filtered = carts.filter(cart => !(cart.id === id && cart.size === size));
 
-  // Update localStorage with the filtered cart items
   localStorage.setItem('carts', JSON.stringify(filtered));
 
-  // Refresh the cart display
+  displaySubCart();
   displayCart();
+  getQuantityCart();
+
 }
 
 // Display the cart items
-function displayCart() {
+function displaySubCart() {
   const carts = JSON.parse(localStorage.getItem('carts')) || [];
   const products = JSON.parse(localStorage.getItem('products')) || [];
+  
   var cart_list = document.querySelector(".cart-list");
   cart_list.innerHTML = ""; // Clear existing content
 
   // Iterate through each cart item
   carts.forEach(cart => {
     const product = products.find(product => product.id === cart.id);
-
     if (product) { // Check if the product exists
       cart_list.innerHTML += `
         <div class="d-flex border-bottom">
@@ -56,6 +78,7 @@ function displayCart() {
       `;
     }
   });
+  getQuantityCart();
 }
 
 
@@ -84,7 +107,7 @@ function check() {
     // Nếu sản phẩm chưa có trong giỏ hàng, thêm mới vào giỏ hàng
     saveCart();
   }
-  displayCart()
+  displaySubCart()
 }
 
 function saveCart() {
@@ -114,6 +137,8 @@ function saveCart() {
   var toastEl = document.querySelector('.toast');
   var toast = new bootstrap.Toast(toastEl);
   toast.show();
+  getQuantityCart();
+
 }
 
 

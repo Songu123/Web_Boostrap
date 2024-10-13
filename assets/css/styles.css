@@ -282,20 +282,20 @@ form input:focus {
 
 .menudrop-ticket {
     display: none;
+    transition: all 0.3s ease;
     width: 20rem;
     right: 0;
     top: 3rem;
     position: absolute; /* Ensure it's positioned correctly */
 }
 
-
 .menudrop-ticket::after {
     position: absolute;
     content: "";
-    height: 20px;
-    width: 20px;
+    height: 15px;
+    width: 15px;
     background-color: rgba(var(--bs-tertiary-bg-rgb)) !important;
-    top: -.7rem;
+    top: -.55rem;
     right: 1.4rem;
     transform: rotate(45deg);
     border-top: 2px solid rgba(var(--bs-dark-rgb), 0.25);
@@ -303,6 +303,35 @@ form input:focus {
     overflow: hidden;
     z-index: 1;
 }
+
+.login-cart-item .menudrop-ticket{
+    width: 14rem;
+    right: -5rem;
+    /* display: block; */
+}
+
+.login-cart-item .menudrop-ticket::after{
+	top: -.55rem;	
+	right: 6.4rem;	
+}
+
+.login-cart-item .menudrop-ticket ul li{
+    transition: .2s ease;
+}
+
+.login-cart-item .menudrop-ticket ul li a {
+    color: #333;
+}
+
+
+.login-cart-item .menudrop-ticket ul li:hover {
+	background-color: #000;
+}
+
+.login-cart-item .menudrop-ticket ul li:hover a {
+    color: #fff;
+}
+
 
 /* END HEADER */
 
