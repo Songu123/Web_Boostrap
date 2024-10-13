@@ -1,3 +1,44 @@
+
+// Gọi hàm loadProducts khi trang web tải
+loadProducts();
+
+// Hiện thị số lượng giỏ hàng và thông tin giỏ hàng trên MENU
+displaySubCart();
+
+
+// // Display the cart items
+// function displaySubCart() {
+//   const carts = JSON.parse(localStorage.getItem('carts')) || [];
+//   const products = JSON.parse(localStorage.getItem('products')) || [];
+
+//   var cart_list = document.querySelector(".cart-list");
+//   cart_list.innerHTML = ""; // Clear existing content
+
+//   // Iterate through each cart item
+//   carts.forEach(cart => {
+//     const product = products.find(product => product.id === cart.id);
+//     if (product) { // Check if the product exists
+//       cart_list.innerHTML += `
+//         <div class="d-flex border-bottom">
+//           <div class="col-5 p-2">
+//             <img src="${product.img1}" class="w-75" alt="${product.name}">
+//           </div>
+//           <div class="col-5" style="font-size: .9rem;">
+//             <p class="fw-light mb-1 fs-5">${product.name}</p>
+//             <p class="text-color mb-1"><b>Màu sắc: </b>Xanh đen</p>
+//             <p class="text-color mb-1"><b>Size: </b>${cart.size}</p>
+//             <p class="text-color mb-1">${cart.quantity} x <b>${product.price.toLocaleString()} đ</b></p>
+//           </div>
+//           <div class="">
+//             <button type="button" class="btn-close border border-1 p-2" onclick="deleteCart('${cart.id}', '${cart.size}')" aria-label="Close"></button>
+//           </div>
+//         </div>
+//       `;
+//     }
+//   });
+//   getQuantityCart();
+// }
+
 // Lấy danh sách các phần tử nav-item
 const navItems = document.querySelectorAll('.nav-item');
 
@@ -88,33 +129,46 @@ function loadProducts() {
     productContainer.innerHTML = ''; // Xóa
 
   products.forEach((product) => {
+    var price = Number(product.price.replace(/\./g, ""));
     productContainer.innerHTML += `
       <div class="col-sm-6 col-md-4 col-lg-3 px-3 mt-4">
                     <a href="./product_detail.html?id=${product.id}" class="text-decoration-none">
                         <div class="card product-card shadow-sm">
                             <div class="position-relative overflow-hidden">
-                                <img src="${product.img1}" class="card-img-top" alt="Product Image">
-                                <img src="${product.img2}" class="product-card-img position-absolute card-img-top top-0 d-none" alt="Product Image">
-                                <div
-                                    class="position-absolute top-50 start-50 translate-middle bg-dark text-white p-2 rounded quick-view d-none">
-                                    QUICK VIEW
+                                <div class="img-container w-100">
+                                    <img src="${product.img1}" class="card-img-top"
+                                        alt="Product Image">
+                                    <img src="${product.img2}"
+                                        class="position-absolute card-img-bottom start-0 top-0"
+                                        alt="Product Image">
+                                    <div
+                                        class="position-absolute bottom-0 start-0 text-center w-100 bg-dark text-white p-2 quick-view">
+                                        QUICK VIEW
+                                    </div>
+                                    <button class="loving-product position-absolute top-0 end-0 rounded-circle">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                            fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                                        </svg>
+                                    </button>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="">
                                     <h5 class="card-title">${product.name}</h5>
-                                    <p class="price fw-bold">₫ ${product.price}</p>
+                                    <p class="price fw-bold">${price.toLocaleString('de-DE')} ₫</p>
                                 </div>
                                 <div class="">
                                     <div class="d-flex">
                                         <p class="text-muted">Màu sắc</p>
                                         <div class="d-flex ps-2">
                                             <img src="./assets/images/products/image.jpg" alt="color1"
-                                            class="rounded-circle me-2" width="30" height="30">
+                                                class="rounded-circle me-2" width="30" height="30">
                                             <img src="./assets/images/products/z5018069269739-aa5c5764d2d4602bb8b55ec50edad312-600x600.jpg"
-                                            alt="color2" class="rounded-circle me-2" width="30" height="30">
-                                            <img src="./assets/images/products/image.jpg" alt="color3" class="rounded-circle"
-                                            width="30" height="30">
+                                                alt="color2" class="rounded-circle me-2" width="30" height="30">
+                                            <img src="./assets/images/products/image.jpg" alt="color3"
+                                                class="rounded-circle" width="30" height="30">
                                         </div>
                                     </div>
                                 </div>
@@ -126,8 +180,6 @@ function loadProducts() {
   });
 }
 
-// Gọi hàm loadProducts khi trang web tải
-loadProducts();
 // Hàm lấy tham số query từ URL
 function getQueryParam(param) {
   const urlParams = new URLSearchParams(window.location.search);

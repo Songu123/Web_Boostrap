@@ -1,6 +1,7 @@
-getQuantityCart();
+// getQuantityCart();
 
 displaySubCart();
+
 // Hàm lấy tham số query từ URL
 function getQueryParam(param) {
   const urlParams = new URLSearchParams(window.location.search);
@@ -46,13 +47,14 @@ function deleteCart(id, size) {
   displayCart();
   getQuantityCart();
 
+  alertUpdateCart();
 }
 
 // Display the cart items
 function displaySubCart() {
   const carts = JSON.parse(localStorage.getItem('carts')) || [];
   const products = JSON.parse(localStorage.getItem('products')) || [];
-  
+
   var cart_list = document.querySelector(".cart-list");
   cart_list.innerHTML = ""; // Clear existing content
 
@@ -60,18 +62,19 @@ function displaySubCart() {
   carts.forEach(cart => {
     const product = products.find(product => product.id === cart.id);
     if (product) { // Check if the product exists
+      var price = Number(product.price.replace(/\./g, "")); 
       cart_list.innerHTML += `
         <div class="d-flex border-bottom">
           <div class="col-5 p-2">
             <img src="${product.img1}" class="w-75" alt="${product.name}">
           </div>
-          <div class="col-5" style="font-size: .9rem;">
+          <div class="col-5 py-2" style="font-size: .9rem;">
             <p class="fw-light mb-1 fs-5">${product.name}</p>
             <p class="text-color mb-1"><b>Màu sắc: </b>Xanh đen</p>
             <p class="text-color mb-1"><b>Size: </b>${cart.size}</p>
-            <p class="text-color mb-1">${cart.quantity} x <b>${product.price.toLocaleString()} đ</b></p>
+            <p class="text-color mb-1">${cart.quantity} x <b>${price.toLocaleString('de-DE')} đ</b></p>
           </div>
-          <div class="">
+          <div class="py-2">
             <button type="button" class="btn-close border border-1 p-2" onclick="deleteCart('${cart.id}', '${cart.size}')" aria-label="Close"></button>
           </div>
         </div>
@@ -103,6 +106,8 @@ function check() {
     localStorage.setItem('carts', JSON.stringify(carts));
 
     console.log(`Đã cập nhật số lượng sản phẩm: ${product_Id}, số lượng mới là: ${carts[index].quantity}`);
+
+    alertAddCart()
   } else {
     // Nếu sản phẩm chưa có trong giỏ hàng, thêm mới vào giỏ hàng
     saveCart();
@@ -134,14 +139,18 @@ function saveCart() {
   console.log("Bạn đã thêm sản phẩm vào giỏ hàng!");
 
   // Hiển thị thông báo thành công
-  var toastEl = document.querySelector('.toast');
-  var toast = new bootstrap.Toast(toastEl);
-  toast.show();
+  alertAddCart()
+
   getQuantityCart();
 
 }
 
-
+// Hàm thông báo sản phẩm đã thêm vào giỏ hàng
+function alertAddCart() {
+  var toastEl = document.querySelector('.toast');
+  var toast = new bootstrap.Toast(toastEl);
+  toast.show();
+}
 
 
 // Hiển thị chi tiết sản phẩm dựa trên ID
@@ -156,6 +165,7 @@ function loadProductDetail(id) {
   container_detail.innerHTML = '';
 
   if (product) {
+    var price = Number(product.price); 
     container_detail.innerHTML = `
         <div class="row gx-5">
         <aside class="col-lg-6">
@@ -218,7 +228,7 @@ function loadProductDetail(id) {
             </div>
 
             <div class="mb-3">
-            <span class="h5">${product.price} đ</span>
+            <span class="h5">${price.toLocaleString('de-DE')} đ</span>
               <span class="text-muted">/sản phẩm</span>
             </div>
 

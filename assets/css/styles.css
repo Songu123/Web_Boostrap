@@ -376,33 +376,67 @@ form input:focus {
 
 
 /* Begin product-cart */
-.product-card img {
-    transition: transform 0.3s;
-}
 
 .product-card:hover img {
-    transform: scale(1.05);
+    /* transform: scale(1.05); */
 }
+
+/* .product-card:hover  */
 
 .quick-view {
     transition: opacity 0.3s;
+    transform: translateY(40px);
+    transition: transform .2s ease-in-out;
 }
 
-.product-card:hover .quick-view {
-    display: block;
+.loving-product {
+    color: #fff;
+    background: none;
+    opacity: 0;
+    padding: .5rem .8rem;
+    border: 2px solid;
+    margin: .5rem .5rem 0 0;
+    transition: opacity .2s ease-in-out;
+}
+
+.loving-product:hover {
+    transition: all .2s ease-in-out;
+    border: 2px solid #cf2e2e; 
+    background-color: #cf2e2e;;
+    color: #fff;
+}
+
+.img-container {
+    height: 19rem;
+}
+
+.img-container:hover .loving-product,
+.img-container:hover .card-img-bottom {
     opacity: 1;
+}
+
+/* .img-container:hover {
+    opacity: 0;
+} */
+
+.img-container:hover .quick-view {
+    transform: translateY(0);
 }
 
 .card-img-top {
-    height: 250px;
+    /* height: 250px; */
     object-fit: cover;
 }
 
-
-.product-card-img {
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out;
+.card-img-bottom {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
 }
+
+.card-body {
+    cursor: grab;
+}
+
 
 /* .product-card-img .show {
     opacity: 1;
