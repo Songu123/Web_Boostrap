@@ -119,7 +119,7 @@ function displayCart() {
                             </div>
                         </div>
                     </td>
-                    <td class="fw-bold align-middle"><span class="product-price" data-id="${cart.id}_${cart.size}">${product.price}</span> đ</td>
+                    <td class="fw-bold align-middle"><span class="product-price" data-id="${cart.id}_${cart.size}">${price.toLocaleString('de-DE')}</span> đ</td>
                     <td class="align-middle">
                         <div class="input-group" style="width: 120px;">
                             <button class="btn btn-white border border-secondary" type="button"

@@ -1,0 +1,26 @@
+.title-account {
+    background-color: #f7f7f7;
+    letter-spacing: .05rem;
+}
+
+
+.content-account-menu ul li::after {
+    content: "";
+    position: absolute;
+    opacity: 0;
+    transition: all .2s ease-in-out;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: .2rem;
+    background-color: #000;
+}
+
+
+.content-account-menu ul li{
+    cursor: pointer;
+}
+
+.content-account-menu ul li:hover::after {
+    opacity: 1;
+}

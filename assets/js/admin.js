@@ -47,7 +47,7 @@ function displayData() {
   document.getElementById("myElement").innerHTML = '';
 
   Object.values(myObject).forEach((value) => {
-      document.getElementById("myElement").innerHTML += `
+    document.getElementById("myElement").innerHTML += `
           <tr>
               <th scope="row">${value.id}</th>
               <td>${value.name}</td>
@@ -110,22 +110,21 @@ function displayData() {
 function saveUpdate(id) {
   var products = JSON.parse(localStorage.getItem('products')) || [];
   const index = products.findIndex(product => product.id === id);
-  
   if (index !== -1) {
-      // Lấy dữ liệu từ các trường trong modal
-      var name = document.getElementById(`name-product-${id}`).value;
-      var describe = document.getElementById(`describe-product-${id}`).value;
-      var price = document.getElementById(`price-product-${id}`).value;
-      var img1 = document.getElementById(`img1-product-${id}`).value;
-      var img2 = document.getElementById(`img2-product-${id}`).value;
+    // Lấy dữ liệu từ các trường trong modal
+    var name = document.getElementById(`name-product-${id}`).value;
+    var describe = document.getElementById(`describe-product-${id}`).value;
+    var price = document.getElementById(`price-product-${id}`).value;
+    var img1 = document.getElementById(`img1-product-${id}`).value;
+    var img2 = document.getElementById(`img2-product-${id}`).value;
 
-      // Cập nhật thông tin sản phẩm
-      products[index] = { id, name, describe, price, img1, img2 };
-      localStorage.setItem('products', JSON.stringify(products));
+    // Cập nhật thông tin sản phẩm
+    products[index] = { id, name, describe, price, img1, img2 };
+    localStorage.setItem('products', JSON.stringify(products));
 
-      // Đóng modal và hiển thị lại dữ liệu
-      $(`#staticUpdate${id}`).modal('hide');
-      displayData();
+    // Đóng modal và hiển thị lại dữ liệu
+    $(`#staticUpdate${id}`).modal('hide');
+    displayData();
   }
 }
 
@@ -137,41 +136,47 @@ function deleteProduct(id) {
   // Lọc ra các sản phẩm không có id khớp với id được truyền vào
   const filtered = products.filter(item => item.id !== id);
 
-  // Cập nhật lại localStorage với danh sách đã được lọc
-  localStorage.setItem('products', JSON.stringify(filtered));
-
-  // Hiển thị lại dữ liệu sau khi xoá
-  displayData();
+  var text = "Bạn có chắc chắn xoá sản phẩm có id =  " + id + " không?"
+  if (confirm(text) == true) {
+    // Cập nhật lại localStorage với danh sách đã được lọc
+    localStorage.setItem('products', JSON.stringify(filtered));
+    // Hiển thị lại dữ liệu sau khi xoá
+    displayData();
+    console.log("Bạn đã xoá thành công!")
+    alert("Bạn đã xoá thành công!");
+  } else {
+    console.log("Bạn đã không xoá!")
+  }
 }
 
 function saveUpdate(id) {
   var products = JSON.parse(localStorage.getItem('products')) || [];
   const index = products.findIndex(product => product.id === id);
-  
+
   if (index !== -1) {
-      // Lấy dữ liệu từ các trường trong modal
-      var name = document.getElementById(`name-product-${id}`).value;
-      var describe = document.getElementById(`describe-product-${id}`).value;
-      var price = document.getElementById(`price-product-${id}`).value;
-      var img1 = document.getElementById(`img1-product-${id}`).value;
-      var img2 = document.getElementById(`img2-product-${id}`).value;
+    // Lấy dữ liệu từ các trường trong modal
+    var name = document.getElementById(`name-product-${id}`).value;
+    var describe = document.getElementById(`describe-product-${id}`).value;
+    var price = document.getElementById(`price-product-${id}`).value;
+    var img1 = document.getElementById(`img1-product-${id}`).value;
+    var img2 = document.getElementById(`img2-product-${id}`).value;
 
-      // Cập nhật thông tin sản phẩm
-      products[index] = { id, name, describe, price, img1, img2 };
-      localStorage.setItem('products', JSON.stringify(products));
+    // Cập nhật thông tin sản phẩm
+    products[index] = { id, name, describe, price, img1, img2 };
+    localStorage.setItem('products', JSON.stringify(products));
 
-      // Đóng modal và hiển thị lại dữ liệu
-      const modalElement = document.getElementById(`staticUpdate${id}`);
-      const modal = bootstrap.Modal.getInstance(modalElement); // Lấy instance của modal
-      modal.hide(); // Đóng modal 
+    // Đóng modal và hiển thị lại dữ liệu
+    const modalElement = document.getElementById(`staticUpdate${id}`);
+    const modal = bootstrap.Modal.getInstance(modalElement); // Lấy instance của modal
+    modal.hide(); // Đóng modal 
 
-      setTimeout(() => {
-        const backdrop = document.querySelector('.modal-backdrop');
-        if (backdrop) {
-          backdrop.remove();
-        }
-      }, 100); // Thời gian đợi một chút trước khi xóa
-         
-      displayData();
-    }
+    setTimeout(() => {
+      const backdrop = document.querySelector('.modal-backdrop');
+      if (backdrop) {
+        backdrop.remove();
+      }
+    }, 100); // Thời gian đợi một chút trước khi xóa
+
+    displayData();
+  }
 }
