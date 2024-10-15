@@ -165,7 +165,7 @@ function loadProductDetail(id) {
   container_detail.innerHTML = '';
 
   if (product) {
-    var price = Number(product.price); 
+    var price = Number(product.price.replace(/\./g, "")); 
     container_detail.innerHTML = `
         <div class="row gx-5">
         <aside class="col-lg-6">

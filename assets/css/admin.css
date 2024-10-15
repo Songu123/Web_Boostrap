@@ -1,3 +1,4 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 html,
 body {
   margin: 0;
@@ -16,6 +17,14 @@ body {
   'opsz' 24
 }
 /* End icons google */
+
+.bg-main {
+  background-color: #353b48;
+}
+
+.icon-menu i{
+  font-size: 1.5rem;
+}
 
 .container {
   text-align: center;
