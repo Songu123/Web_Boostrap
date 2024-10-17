@@ -5,7 +5,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin</title>
-  <link rel="stylesheet" href="index.css" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet"
@@ -21,12 +20,12 @@
 
 <body>
   <div class="admin-main row">
-    <div id="admin-content-left" class="col-3 category">
+    <div id="admin-content-left" class="scrollable-div col-3 category">
       <h1 class="fw-bold py-4 px-3">ADMIN</h1>
       <div class="accordion pt-5 border-top" id="accordionPanelsStayOpenExample">
         <div class="accordion-item my-3 border">
           <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            <button class="hover-item fs-5 accordion-button collapsed" type="button" data-bs-toggle="collapse"
               data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
               aria-controls="panelsStayOpen-collapseOne">
               Áo nam
@@ -35,11 +34,11 @@
           <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" style="">
             <div class="accordion-body p-0">
               <ul class="list-unstyled m-0">
-                <li class="py-3 px-3 bg-primary my-1">
-                  <a href="" class="text-decoration-none text-dark">Áo polo</a>
+                <li class="hover-item py-3 px-3 my-2" onclick="displayData('polo', false)">
+                  Áo Polo
                 </li>
-                <li class="py-3 px-3 bg-primary my-1">
-                  <a href="" class="text-decoration-none text-dark">Áo Thun</a>
+                <li class="hover-item py-3 px-3 my-2" onclick="displayData('aothun', false)">
+                  Áo Thun
                 </li>
               </ul>
             </div>
@@ -47,7 +46,7 @@
         </div>
         <div class="accordion-item my-3 border">
           <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            <button class="hover-item fs-5 accordion-button collapsed" type="button" data-bs-toggle="collapse"
               data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
               aria-controls="panelsStayOpen-collapseTwo">
               Quần nam
@@ -56,11 +55,11 @@
           <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" style="">
             <div class="accordion-body p-0">
               <ul class="list-unstyled m-0">
-                <li class="py-3 px-3 bg-primary my-1">
-                  <a href="" class="text-decoration-none text-dark w-100">Quần kaki</a>
+                <li class="hover-item py-3 px-3  my-2" onclick="displayData('kaki', false)">
+                  Quần Kaki
                 </li>
-                <li class="py-3 px-3 bg-primary my-1">
-                  <a href="" class="text-decoration-none text-dark">Quần Thun</a>
+                <li class="hover-item py-3 px-3  my-2" onclick="displayData('quanthun',false)">
+                  Quần Thun
                 </li>
               </ul>
             </div>
@@ -68,7 +67,7 @@
         </div>
         <div class="accordion-item my-3 border">
           <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            <button class="hover-item fs-5 accordion-button collapsed" type="button" data-bs-toggle="collapse"
               data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
               aria-controls="panelsStayOpen-collapseThree">
               Đồ lót
@@ -77,37 +76,24 @@
           <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" style="">
             <div class="accordion-body p-0">
               <ul class="list-unstyled m-0">
-                <li class="py-3 px-3 bg-primary my-1">
-                  <a href="" class="text-decoration-none text-dark">Brief</a>
+                <li class="hover-item py-3 px-3  my-2" onclick="displayData('brief', false)">
+                  Brief
                 </li>
-                <li class="py-3 px-3 bg-primary my-1">
-                  <a href="" class="text-decoration-none text-dark">Boxer</a>
+                <li class="hover-item py-3 px-3  my-2" onclick="displayData('boxer', false)">
+                  Boxer
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        <div class="accordion-item my-3 border">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
-              aria-controls="panelsStayOpen-collapseThree">
+        <div class="accordion-item my-3 border cursor-pointer" onclick="displayData('account', true)">
+          <h2 class="hover-item d-flex align-items-center m-0 py-3 px-4 fs-5">
               Account
-            </button>
           </h2>
-          <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" style="">
-            <div class="accordion-body">
-              <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse
-              plugin adds the appropriate classes that we use to style each element. These classes control the overall
-              appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom
-              CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the
-              <code>.accordion-body</code>, though the transition does limit overflow.
-            </div>
-          </div>
         </div>
       </div>
     </div>
-    <div id="admin-content-right " class="col-9 container">
+    <div id="admin-content-right shadow" class="scrollable-div col-9 container">
       <div class="bg-main text-light p-3">
         <div class="row">
           <div class="col-6 d-flex">
@@ -120,13 +106,13 @@
             </form>
           </div>
           <div class="col-6 d-flex justify-content-end">
-            <button class="icon-menu">
+            <button class="icon-menu px-2 mx-1">
               <i class="bi bi-bell-fill"></i>
             </button>
-            <button class="icon-menu">
+            <button class="icon-menu px-2 mx-1">
               <i class="bi bi-chat-square-text-fill"></i>
             </button>
-            <button class="icon-menu">
+            <button class="icon-menu px-2 mx-1">
               <i class="bi bi-person-circle"></i>
             </button>
           </div>
@@ -137,10 +123,11 @@
         </div>
       </div>
       <div class="table-content container">
-        <div class="d-flex bg-main p-3 justify-content-start my-3">
+        <div class="d-flex bg-main p-3 px-5 justify-content-between align-items-center my-3">
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add new
-            product</button>
+          <h3 class="name-title text-light m-0">Áo Nam Polo</h3>
+          <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add
+            new</button>
         </div>
         <!-- Modal Add New-->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -154,27 +141,27 @@
               <div class="modal-body">
                 <div class="form-group">
                   <label class="d-flex justify-content-start">Name Product</label>
-                  <input type="text" class="w-100 product-name" id="name-product" placeholder="Enter your Name Product"
+                  <input type="text" class="border p-2 w-100 product-name" id="name-product" placeholder="Enter your Name Product"
                     data-has-listeners="true">
                 </div>
                 <div class="form-group">
                   <label class="d-flex justify-content-start">Describe</label>
-                  <input type="text" class="w-100 product-describe" placeholder="Enter your Describe"
+                  <input type="text" class="border p-2 w-100 product-describe" placeholder="Enter your Describe"
                     data-has-listeners="true">
                 </div>
                 <div class="form-group">
                   <label class="d-flex justify-content-start">Price</label>
-                  <input type="text" class="w-100 product-price" placeholder="Enter your Price"
+                  <input type="text" class="border p-2 w-100 product-price" placeholder="Enter your Price"
                     data-has-listeners="true">
                 </div>
                 <div class="form-group">
                   <label class="d-flex justify-content-start">Image 1</label>
-                  <input type="text" class="w-100 product-img1" placeholder="Enter your Image"
+                  <input type="text" class="border p-2 w-100 product-img1" placeholder="Enter your Image"
                     data-has-listeners="true">
                 </div>
                 <div class="form-group">
                   <label class="d-flex justify-content-start">Image 2</label>
-                  <input type="text" class="w-100 product-img2" placeholder="Enter your Image"
+                  <input type="text" class="border p-2 w-100 product-img2" placeholder="Enter your Image"
                     data-has-listeners="true">
                 </div>
               </div>
@@ -189,7 +176,7 @@
         <!-- End Modal Add New-->
         <table class="table">
           <thead>
-            <tr>
+            <!-- <tr>
               <th scope="col">ID</th>
               <th scope="col">Name</th>
               <th scope="col">Describe</th>
@@ -197,6 +184,16 @@
               <th scope="col">Image 1</th>
               <th scope="col">Image 2</th>
               <th scope="col">Actions</th>
+            </tr> -->
+
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Username</th> 
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Password</th>
+              <th scope="col">Role</th>
+              <th scope="col" class="col-3">Actions</th>
             </tr>
           </thead>
           <tbody id="myElement" style="max-height: 10rem; height: 25rem;">
@@ -218,12 +215,13 @@
             </tr> -->
           </tbody>
         </table>
-        <div class="bg-main p-4"></div>
       </div>
+      
+      <div class="footer-main bg-main p-4"></div>
     </div>
   </div>
 </body>
-<!-- <script src="./assets/js/admin.js"></script> -->
+<script src="./assets/js/admin.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
