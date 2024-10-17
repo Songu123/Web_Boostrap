@@ -1,4 +1,17 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  /* box-sizing: inherit; */
+}
+body, html {
+  width: 100%;
+  max-width: 100vw; /* Không vượt quá chiều ngang của màn hình */
+  overflow-x: hidden; 
+}
+
 html,
 body {
   margin: 0;
@@ -6,8 +19,13 @@ body {
   font-family: "Roboto", sans-serif;
   --text-color: #333;
   color: var(--text-color);
-  background-color: #e0f0fd;
+  /* background-color: #e0f0fd; */
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
 /* Icons google */
 .material-symbols-outlined {
   font-variation-settings:
@@ -26,6 +44,19 @@ body {
   font-size: 1.5rem;
 }
 
+.accordion-body ul li {
+  cursor: pointer;
+}
+
+.hover-item {
+  transition: all .3s;
+}
+
+.hover-item:hover {
+  background-color: #353b48;
+  color: #fff;
+}
+
 .container {
   text-align: center;
   margin: auto;
@@ -40,3 +71,12 @@ body {
 }
 
 /* End set width img */
+
+.scrollable-div {
+  transition: all .2s;
+  height: 52rem; /* Set a fixed height to allow scrolling */
+  overflow-y: auto; /* Allow vertical scrolling */
+  padding: 10px;
+  /* border: 1px solid #ccc; */
+}
+
