@@ -414,6 +414,7 @@ const displayData = (type, isAccount) => {
 
   changeTableHead(isAccount);
   
+  
 
   document.querySelector(".modal-footer").innerHTML = `
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -605,9 +606,15 @@ const changeTableHead = (isAccount) => {
     </tr>
   `;
 
-  // Clear the thead content first
+  // Clear the thead content
   thead.innerHTML = '';
 
-  // Fix the ternary logic
-  thead.innerHTML = isAccount ? accountHeaders : productHeaders;
+  // Change the table head and modal based on whether it's account or product data
+  if (isAccount) {
+    thead.innerHTML = accountHeaders;
+    changeAccountModal(); // Modify the modal for account
+  } else {
+    thead.innerHTML = productHeaders;
+    changeProductModal(); // Modify the modal for product
+  }
 };
