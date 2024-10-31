@@ -509,7 +509,7 @@ const getProductModalInputs = (value) =>
   ['name', 'describe', 'price', 'img1', 'img2'].map(field => `
     <div class="form-group">
       <label class="d-flex justify-content-start">${field.charAt(0).toUpperCase() + field.slice(1)}</label>
-      <input type="text" class="w-100" id="${field}-product-${value.id}" placeholder="Enter your ${field}" value="${value[field]}">
+      <input type="text" class="border p-2 w-100 product-describe" id="${field}-product-${value.id}" placeholder="Enter your ${field}" value="${value[field]}">
     </div>
   `).join('');
 
@@ -618,3 +618,5 @@ const changeTableHead = (isAccount) => {
     changeProductModal(); // Modify the modal for product
   }
 };
+
+

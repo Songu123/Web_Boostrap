@@ -78,14 +78,18 @@ function decreaseQuantity(productId, size) {
 
 function displayCart() {
     const carts = JSON.parse(localStorage.getItem('carts')) || [];
-    const products = JSON.parse(localStorage.getItem('products')) || [];
-    var table_cart = document.querySelector(".table-cart-content");
+    const poloProducts = JSON.parse(localStorage.getItem('polo')) || [];
+    const aothunProducts = JSON.parse(localStorage.getItem('aothun')) || [];
+    const quanthunProducts = JSON.parse(localStorage.getItem('quanthun')) || [];
+    const quanlotProducts = JSON.parse(localStorage.getItem('brief')) || [];
+  
+    const allProducts = poloProducts.concat(aothunProducts, quanthunProducts, quanlotProducts);    var table_cart = document.querySelector(".table-cart-content");
     var tongtien = 0;
     table_cart.innerHTML = ""; // Clear existing content
 
     // Iterate through each cart item
     carts.forEach(cart => {
-        const product = products.find(product => product.id === cart.id);
+        const product = allProducts.find(product => product.id === cart.id);
 
         if (product) { // Check if the product exists
             var price = Number(product.price.replace(/\./g, ""));

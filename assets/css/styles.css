@@ -12,6 +12,11 @@ body, html {
     overflow-x: hidden; 
 }
 
+h1, h2, h3, h4, h5, h6 {
+    text-decoration: none;
+    color: #555;
+}
+
 /* END RESET */
 .text-color {
     color: hsla(0, 0%, 40%, .85) !important;
@@ -28,6 +33,15 @@ body, html {
 
 .input-color {
     background-color: rgba(0,0,0,.03);
+}
+
+.xemtatca-btn {
+    transition: all .1s ease-in;
+}
+
+.xemtatca-btn:hover {
+    background-color: #000;
+    color: #fff;
 }
 
 .img-hover {
@@ -64,7 +78,7 @@ body, html {
     content: "";
     flex: 1;
     height: 1px;
-    background: #eee;
+    background: hsla(0,0%,100%,.3);
 }
 
 .h-custom {
@@ -355,6 +369,10 @@ form input:focus {
     position: relative;
 }
 
+.image-danhmuc h5 {
+    text-decoration: none !important;
+  }
+
 .image-danhmuc img {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -469,7 +487,7 @@ form input:focus {
 
 /* BEGIN FOOTER */
 .is-divider {
-    background-color: #fff;
+    background: hsla(0,0%,100%,.3);
     display: block;
     height: 3px;
     margin: 1em 0;
