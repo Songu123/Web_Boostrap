@@ -130,49 +130,124 @@
             new</button>
         </div>
         <!-- Modal Add New-->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-          aria-labelledby="staticBackdropLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Product</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header bg-primary text-white">
+        <div class="modal-title-wrapper">
+          <h5 class="modal-title">
+            <i class="bi bi-plus-circle me-2"></i>
+            Thêm Sản Phẩm Mới
+          </h5>
+          <small class="modal-subtitle">Điền thông tin sản phẩm bên dưới</small>
+        </div>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <form id="productForm" class="needs-validation" novalidate>
+          <div class="form-group mb-3">
+            <label class="form-label">
+              <i class="bi bi-tag me-1"></i>
+              Tên Sản Phẩm
+            </label>
+            <input 
+              type="text" 
+              class="form-control product-name" 
+              placeholder="VD: Áo Polo Nam"
+              required
+            >
+            <div class="invalid-feedback">Vui lòng nhập tên sản phẩm</div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label class="form-label">
+              <i class="bi bi-card-text me-1"></i>
+              Mô Tả
+            </label>
+            <textarea 
+              class="form-control product-describe" 
+              rows="3"
+              placeholder="Mô tả chi tiết sản phẩm..."
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group mb-3">
+            <label class="form-label">
+              <i class="bi bi-currency-dollar me-1"></i>
+              Giá
+            </label>
+            <div class="input-group">
+              <span class="input-group-text">$</span>
+              <input 
+                type="number" 
+                class="form-control product-price"
+                placeholder="0.00"
+                required
+              >
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group mb-3">
+                <label class="form-label">
+                  <i class="bi bi-image me-1"></i>
+                  Hình Ảnh 1
+                </label>
+                <div class="input-group">
+                  <input 
+                    type="file" 
+                    class="form-control product-img1"
+                    accept="image/*"
+                    required
+                  >
+                  <label class="input-group-text">
+                    <i class="bi bi-upload"></i>
+                  </label>
+                </div>
               </div>
-              <div class="modal-body">
-                <div class="form-group">
-                  <label class="d-flex justify-content-start">Name Product</label>
-                  <input type="text" class="border p-2 w-100 product-name" id="name-product" placeholder="Enter your Name Product"
-                    data-has-listeners="true">
+            </div>
+            <div class="col-md-6">
+              <div class="form-group mb-3">
+                <label class="form-label">
+                  <i class="bi bi-image me-1"></i>
+                  Hình Ảnh 2
+                </label>
+                <div class="input-group">
+                  <input 
+                    type="file" 
+                    class="form-control product-img2"
+                    accept="image/*"
+                    required
+                  >
+                  <label class="input-group-text">
+                    <i class="bi bi-upload"></i>
+                  </label>
                 </div>
-                <div class="form-group">
-                  <label class="d-flex justify-content-start">Describe</label>
-                  <input type="text" class="border p-2 w-100 product-describe" placeholder="Enter your Describe"
-                    data-has-listeners="true">
-                </div>
-                <div class="form-group">
-                  <label class="d-flex justify-content-start">Price</label>
-                  <input type="text" class="border p-2 w-100 product-price" placeholder="Enter your Price"
-                    data-has-listeners="true">
-                </div>
-                <div class="form-group">
-                  <label class="d-flex justify-content-start">Image 1</label>
-                  <input type="text" class="border p-2 w-100 product-img1" placeholder="Enter your Image"
-                    data-has-listeners="true">
-                </div>
-                <div class="form-group">
-                  <label class="d-flex justify-content-start">Image 2</label>
-                  <input type="text" class="border p-2 w-100 product-img2" placeholder="Enter your Image"
-                    data-has-listeners="true">
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" onclick="saveData()" id="add-product" class="add-product btn btn-primary"
-                  data-bs-dismiss="modal">Add</button>
               </div>
             </div>
           </div>
-        </div>
+        </form>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+          <i class="bi bi-x-circle me-1"></i>
+          Hủy
+        </button>
+        <button type="submit" class="btn btn-primary" onclick="saveData()">
+          <i class="bi bi-check-circle me-1"></i>
+          Lưu Sản Phẩm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
         <!-- End Modal Add New-->
         <table class="table">
           <thead>

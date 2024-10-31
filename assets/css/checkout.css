@@ -1,0 +1,66 @@
+/* .checkout {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+} */
+
+.breadcrumb-lg {
+    font-size: 24px;
+  }
+
+.checkout h2 {
+    margin-top: 0;
+}
+
+.checkout form {
+    margin-top: 20px;
+}
+
+.checkout .form-group {
+    margin-bottom: 20px;
+}
+
+.checkout label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.checkout .invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+
+.checkout .is-invalid~.invalid-feedback {
+    display: block;
+}
+
+.form-check-input {
+    width: 20px; height: 20px; border: 1px solid #ccc; background-color: #fff;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.form-check-input:checked {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.place-order {
+    background: #d26e4b;
+    border: none;
+}
+.place-order:hover {
+    background: #b24923;
+    border: #daa18c;
+}

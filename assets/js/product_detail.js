@@ -12,10 +12,11 @@ function getQueryParam(param) {
 const product_Id = getQueryParam('id');
 
 // Lấy dữ liệu giỏ hàng từ localStorage
-
+loadProductDetail(product_Id) 
 // Lấy dữ liệu sản phẩm từ localStorage
 
 // Hàm lấy số lượng sản phẩm trong giỏ hàng
+
 function getQuantityCart() {
   var carts = JSON.parse(localStorage.getItem('carts')) || [];
   var tongtien = 0;
@@ -53,36 +54,57 @@ function deleteCart(id, size) {
 // Display the cart items
 function displaySubCart() {
   const carts = JSON.parse(localStorage.getItem('carts')) || [];
-  const products = JSON.parse(localStorage.getItem('products')) || [];
+  const poloProducts = JSON.parse(localStorage.getItem('polo')) || [];
+  const aothunProducts = JSON.parse(localStorage.getItem('aothun')) || [];
+  const quanthunProducts = JSON.parse(localStorage.getItem('quanthun')) || [];
+  const quanlotProducts = JSON.parse(localStorage.getItem('brief')) || [];
 
-  var cart_list = document.querySelector(".cart-list");
+  const allProducts = poloProducts.concat(aothunProducts, quanthunProducts, quanlotProducts);
+  let tongtien = 0; // Changed from const to let
+
+  const cart_list = document.querySelector(".cart-list");
   cart_list.innerHTML = ""; // Clear existing content
 
   // Iterate through each cart item
   carts.forEach(cart => {
-    const product = products.find(product => product.id === cart.id);
+    const product = allProducts.find(product => product.id === cart.id);
     if (product) { // Check if the product exists
-      var price = Number(product.price.replace(/\./g, "")); 
-      cart_list.innerHTML += `
-        <div class="d-flex border-bottom">
-          <div class="col-5 p-2">
-            <img src="${product.img1}" class="w-75" alt="${product.name}">
+      const price = Number(product.price.replace(/\./g, ""));
+      const quantity = parseInt(cart.quantity); // Validate quantity
+      if (!isNaN(quantity)) {
+        tongtien += price * quantity; // Add to tongtien
+        cart_list.innerHTML += `
+          <div class="d-flex border-bottom">
+            <div class="col-5 p-2">
+              <img src="${product.img1}" class="w-75" alt="${product.name}">
+            </div>
+            <div class="col-5 py-2" style="font-size: .9rem;">
+              <p class="fw-light mb-1 fs-5">${product.name}</p>
+              <p class="text-color mb-1"><b>Màu sắc: </b>Xanh đen</p>
+              <p class="text-color mb-1"><b>Size: </b>${cart.size}</p>
+              <p class="text-color mb-1">${quantity} x <b>${price.toLocaleString('de-DE')} đ</b></p>
+            </div>
+            <div class="py-2">
+              <button type="button" class="btn-close border border-1 p-2" onclick="deleteCart('${cart.id}', '${cart.size}')" aria-label="Close"></button>
+            </div>
           </div>
-          <div class="col-5 py-2" style="font-size: .9rem;">
-            <p class="fw-light mb-1 fs-5">${product.name}</p>
-            <p class="text-color mb-1"><b>Màu sắc: </b>Xanh đen</p>
-            <p class="text-color mb-1"><b>Size: </b>${cart.size}</p>
-            <p class="text-color mb-1">${cart.quantity} x <b>${price.toLocaleString('de-DE')} đ</b></p>
-          </div>
-          <div class="py-2">
-            <button type="button" class="btn-close border border-1 p-2" onclick="deleteCart('${cart.id}', '${cart.size}')" aria-label="Close"></button>
-          </div>
-        </div>
-      `;
+        `;
+      } else {
+        console.error(`Invalid quantity for product ${product.name}`);
+      }
+    } else {
+      console.error(`Product not found for cart item ${cart.id}`);
     }
   });
+
   getQuantityCart();
+  insertTongTien(tongtien); // Insert tongtien after calculation
 }
+
+function insertTongTien(tongtien) {
+  document.querySelector(".tongsophu").innerHTML = `${tongtien.toLocaleString('de-DE')} đ`;
+}
+
 
 
 function check() {
@@ -155,12 +177,17 @@ function alertAddCart() {
 
 // Hiển thị chi tiết sản phẩm dựa trên ID
 function loadProductDetail(id) {
-  const products = JSON.parse(localStorage.getItem('products')) || [];
+  const poloProducts = JSON.parse(localStorage.getItem('polo')) || [];
+  const aothunProducts = JSON.parse(localStorage.getItem('aothun')) || [];
+  const quanthunProducts = JSON.parse(localStorage.getItem('quanthun')) || [];
+  const quanlotProducts = JSON.parse(localStorage.getItem('brief')) || [];
+
+  const allProducts = poloProducts.concat(aothunProducts, quanthunProducts, quanlotProducts);
 
   const container_detail = document.getElementById("detail_container");
 
   // Tìm sản phẩm theo ID
-  const product = products.find(product => product.id === id);
+  const product = allProducts.find(product => product.id === id);
 
   container_detail.innerHTML = '';
 

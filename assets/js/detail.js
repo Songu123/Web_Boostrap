@@ -9,7 +9,7 @@ function getQueryParam(param) {
   
   // Hiển thị chi tiết sản phẩm dựa trên ID
   function loadProductDetail(id) {
-    var products = JSON.parse(localStorage.getItem('products')) || [];
+    var products = JSON.parse(localStorage.getItem('polo')) || [];
   
     // Tìm sản phẩm theo ID
     const product = products.find(product => product.id === id);
