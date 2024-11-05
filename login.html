@@ -8,7 +8,9 @@
     <link rel="icon" type="image/x-icon" href="/assets/images/logo/logo-polostore-3-1080x782.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/login.css">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="./slick-1.8.1/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="./slick-1.8.1/slick/slick-theme.css" />
@@ -20,19 +22,23 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary shadow">
             <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" href="#offcanvasExample"
+                    role="button" aria-controls="offcanvasExample">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                
-                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+                    aria-labelledby="offcanvasExampleLabel">
                     <div class="offcanvas-header">
                         <div class="position-relative w-100 ">
                             <input type="text" name="" id="" class="w-100 px-2 rounded-4" placeholder="Tìm kiếm ...">
                         </div>
-                        <a class="position-absolute end-0 me-4 text-dark" href="">  
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                        <a class="position-absolute end-0 me-4 text-dark" href="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-search" viewBox="0 0 16 16">
+                                <path
+                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                             </svg>
                         </a>
                     </div>
@@ -43,7 +49,7 @@
                           <li><a class="" href="#">Something else here</a></li>
                         </ul>
                     </div> -->
-                  </div>
+                </div>
 
                 <div class=""></div>
                 <a class="navbar-brand col-5 col-lg-2" href="./index.html">
@@ -65,7 +71,8 @@
                             <a class="nav-link fw-semibold active" aria-current="page" href="#">NEW ARRIVAL</a>
                         </li>
                         <li class="nav-item p-2 mx-1 dropdown">
-                            <a class="nav-link fw-semibold active dropdown-toggle" aria-current="page" href="#">ÁO NAM</a>
+                            <a class="nav-link fw-semibold active dropdown-toggle" aria-current="page" href="#">ÁO
+                                NAM</a>
                             <ul class="dropdown-menu border border-2 mt-1">
                                 <li><a class="dropdown-item" href="#">Áo polo</a></li>
                                 <li><a class="dropdown-item" href="#">Áo thun</a></li>
@@ -75,7 +82,8 @@
                             </ul>
                         </li>
                         <li class="nav-item p-2 mx-1 dropdown">
-                            <a class="nav-link fw-semibold active dropdown-toggle" aria-current="page" href="#">QUẦN NAM</a>
+                            <a class="nav-link fw-semibold active dropdown-toggle" aria-current="page" href="#">QUẦN
+                                NAM</a>
                             <ul class="dropdown-menu border border-2 mt-1">
                                 <li><a class="dropdown-item" href="#">Quần kaki</a></li>
                                 <li><a class="dropdown-item" href="#">Quần thun</a></li>
@@ -83,7 +91,8 @@
                             </ul>
                         </li>
                         <li class="nav-item p-2 mx-1 dropdown">
-                            <a class="nav-link fw-semibold active dropdown-toggle" aria-current="page" href="#">ĐỒ LÓT</a>
+                            <a class="nav-link fw-semibold active dropdown-toggle" aria-current="page" href="#">ĐỒ
+                                LÓT</a>
                             <ul class="dropdown-menu border border-2 mt-1">
                                 <li><a class="dropdown-item" href="#">Brief</a></li>
                                 <li><a class="dropdown-item" href="#">Boxer</a></li>
@@ -132,71 +141,220 @@
     <!-- End header -->
 
     <!-- Begin content -->
-    <section class="vh-100">
-        <div class="container-fluid h-custom">
-            <div class="row d-flex justify-content-center align-items-center h-100">
+    <section class="login-section py-5">
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-center">
+                <!-- Left side - Image -->
                 <div class="col-md-9 col-lg-6 col-xl-5">
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-                        class="img-fluid" alt="Sample image">
+                        class="img-fluid hover-shadow" alt="Login illustration">
                 </div>
+
+                <!-- Right side - Login Form -->
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                    <form id="loginForm" class="needs-validation" novalidate>
-                        <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-                            <p class="lead fw-normal mb-0 me-3">Đăng nhập với</p>
-                            <button type="button" class="btn btn-primary btn-floating mx-1">
-                                <i class="fab fa-facebook-f"></i>
-                            </button>
-                            <button type="button" class="btn btn-primary btn-floating mx-1">
-                                <i class="fab fa-twitter"></i>
-                            </button>
-                            <button type="button" class="btn btn-primary btn-floating mx-1">
-                                <i class="fab fa-linkedin-in"></i>
-                            </button>
+                    <form id="loginForm" class="needs-validation p-4 rounded-3 bg-white shadow-sm" novalidate>
+                        <!-- Social Login -->
+                        <div class="text-center mb-4">
+                            <h4 class="fw-bold mb-3">Đăng nhập</h4>
+                            <div class="social-buttons">
+                                <button type="button" class="btn btn-social btn-facebook">
+                                    <i class="bi bi-facebook"></i>
+                                </button>
+                                <button type="button" class="btn btn-social btn-google">
+                                    <i class="bi bi-google"></i>
+                                </button>
+                                <button type="button" class="btn btn-social btn-twitter">
+                                    <i class="bi bi-twitter"></i>
+                                </button>
+                            </div>
+                            <div class="divider my-4">
+                                <span class="divider-text">hoặc đăng nhập với email</span>
+                            </div>
                         </div>
-        
-                        <div class="divider d-flex align-items-center my-4">
-                            <p class="text-center fw-bold mx-3 mb-0">Hoặc</p>
-                        </div>
-        
+
                         <!-- Email input -->
-                        <div class="form-outline mb-4">
-                            <label class="form-label" for="form3Example3">Email address</label>
-                            <input type="email" id="form3Example3" class="form-control form-control-lg"
-                                placeholder="Nhập địa chỉ email" required />
-                            <div class="invalid-feedback">
-                                Vui lòng nhập địa chỉ email.
-                            </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="emailInput" placeholder="name@example.com"
+                                required>   
+                            <label for="emailInput">
+                                <i class="bi bi-envelope-fill me-1"></i>Email
+                            </label>
+                            <div class="invalid-feedback">Vui lòng nhập email hợp lệ</div>
                         </div>
-        
+
                         <!-- Password input -->
-                        <div class="form-outline mb-3">
-                            <label class="form-label" for="form3Example4">Password</label>
-                            <input type="password" id="form3Example4" class="form-control form-control-lg"
-                                placeholder="Nhập mật khẩu" required minlength="6" />
-                            <div class="invalid-feedback">
-                                Vui lòng nhập mật khẩu trên 6 kí tự.
-                            </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="passwordInput" placeholder="Password"
+                                required minlength="6">
+                            <label for="passwordInput">
+                                <i class="bi bi-lock-fill me-1"></i>Mật khẩu
+                            </label>
+                            <div class="invalid-feedback">Mật khẩu phải có ít nhất 6 ký tự</div>
                         </div>
-        
-                        <div class="d-flex justify-content-between align-items-center">
-                            <!-- Checkbox -->
-                            <div class="form-check mb-0">
-                                <input class="form-check-input me-2" type="checkbox" value="" id="invalidCheck" required />
-                                <label class="form-check-label" for="invalidCheck">
-                                    Đồng ý với các điểu khoản và điều kiện
+
+                        <!-- Remember me & Forgot password -->
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">
+                                    Ghi nhớ đăng nhập
                                 </label>
-                                <div class="invalid-feedback">
-                                    Bạn phải đồng ý trước khi đăng nhập.
+                            </div>
+                            <a href="#" class="text-primary text-decoration-none">Quên mật khẩu?</a>
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary w-100 mb-3 py-2">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>Đăng nhập
+                        </button>
+
+                        <!-- Register link -->
+                        <div class="text-center">
+                            <span>Chưa có tài khoản? </span>
+                            <button type="button" class="btn btn-link p-0 text-primary text-decoration-none"
+                                data-bs-toggle="modal" data-bs-target="#registerModal">
+                                Đăng ký ngay
+                            </button>
+                            <!-- Register Modal -->
+                            <div class="modal fade" id="registerModal" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content border-0">
+                                        <!-- Modal Header -->
+                                        <div class="modal-header bg-primary text-white border-0">
+                                            <h5 class="modal-title">
+                                                <i class="bi bi-person-plus-fill me-2"></i>
+                                                Đăng Ký Tài Khoản
+                                            </h5>
+                                            <button type="button" class="btn-close btn-close-white"
+                                                data-bs-dismiss="modal"></button>
+                                        </div>
+
+                                        <!-- Modal Body -->
+                                        <div class="modal-body p-4">
+                                            <form id="registerForm" class="needs-validation" novalidate>
+                                                <!-- Progress Steps -->
+                                                <div class="progress mb-4" style="height: 3px;">
+                                                    <div class="progress-bar" role="progressbar" style="width: 0%">
+                                                    </div>
+                                                </div>
+
+                                                <!-- Step indicators -->
+                                                <div class="d-flex justify-content-between mb-4">
+                                                    <span class="step active">Thông tin cá nhân</span>
+                                                    <span class="step">Xác thực</span>
+                                                    <span class="step">Hoàn tất</span>
+                                                </div>
+
+                                                <!-- Step 1: Personal Info -->
+                                                <div class="step-content active" id="step1">
+                                                    <!-- Username -->
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" class="form-control" id="username"
+                                                            placeholder="Username" required>
+                                                        <label for="username">
+                                                            <i class="bi bi-person"></i> Tên đăng nhập
+                                                        </label>
+                                                        <div class="invalid-feedback">Vui lòng nhập tên đăng nhập</div>
+                                                    </div>
+
+                                                    <!-- Full Name -->
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" class="form-control" id="fullname"
+                                                            placeholder="Full Name" required>
+                                                        <label for="fullname">
+                                                            <i class="bi bi-person-badge"></i> Họ và tên
+                                                        </label>
+                                                        <div class="invalid-feedback">Vui lòng nhập họ và tên</div>
+                                                    </div>
+
+                                                    <!-- Email -->
+                                                    <div class="form-floating mb-3">
+                                                        <input type="email" class="form-control" id="email"
+                                                            placeholder="Email" required>
+                                                        <label for="email">
+                                                            <i class="bi bi-envelope"></i> Email
+                                                        </label>
+                                                        <div class="invalid-feedback">Vui lòng nhập email hợp lệ</div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Step 2: Security -->
+                                                <div class="step-content" id="step2">
+                                                    <!-- Password -->
+                                                    <div class="form-floating mb-3">
+                                                        <input type="password" class="form-control" id="password"
+                                                            placeholder="Password" required minlength="6">
+                                                        <label for="password">
+                                                            <i class="bi bi-lock"></i> Mật khẩu
+                                                        </label>
+                                                        <div class="invalid-feedback">Mật khẩu phải có ít nhất 6 ký tự
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Confirm Password -->
+                                                    <div class="form-floating mb-3">
+                                                        <input type="password" class="form-control" id="confirmPassword"
+                                                            placeholder="Confirm Password" required>
+                                                        <label for="confirmPassword">
+                                                            <i class="bi bi-lock-fill"></i> Xác nhận mật khẩu
+                                                        </label>
+                                                        <div class="invalid-feedback">Mật khẩu không khớp</div>
+                                                    </div>
+
+                                                    <!-- Password strength indicator -->
+                                                    <div class="password-strength mb-3">
+                                                        <div class="progress" style="height: 5px;">
+                                                            <div class="progress-bar" role="progressbar"></div>
+                                                        </div>
+                                                        <small class="text-muted">Độ mạnh mật khẩu: <span
+                                                                id="strengthText">Yếu</span></small>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Step 3: Confirmation -->
+                                                <div class="step-content" id="step3">
+                                                    <!-- Terms and Conditions -->
+                                                    <div class="form-check mb-3">
+                                                        <input class="form-check-input" type="checkbox" id="terms"
+                                                            required>
+                                                        <label class="form-check-label" for="terms">
+                                                            Tôi đồng ý với <a href="#" class="text-primary">điều
+                                                                khoản</a> và
+                                                            <a href="#" class="text-primary">chính sách bảo mật</a>
+                                                        </label>
+                                                        <div class="invalid-feedback">
+                                                            Bạn phải đồng ý với điều khoản
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Newsletter Subscription -->
+                                                    <div class="form-check mb-3">
+                                                        <input class="form-check-input" type="checkbox" id="newsletter">
+                                                        <label class="form-check-label" for="newsletter">
+                                                            Đăng ký nhận thông tin và ưu đãi qua email
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <!-- Modal Footer -->
+                                        <div class="modal-footer border-0">
+                                            <button type="button" class="btn btn-outline-secondary" id="prevBtn"
+                                                style="display: none;">
+                                                <i class="bi bi-arrow-left me-1"></i>Quay lại
+                                            </button>
+                                            <button type="button" class="btn btn-primary" id="nextBtn">
+                                                Tiếp tục<i class="bi bi-arrow-right ms-1"></i>
+                                            </button>
+                                            <button type="submit" class="btn btn-success" id="submitBtn"
+                                                style="display: none;">
+                                                <i class="bi bi-check-circle me-1"></i>Hoàn tất đăng ký
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <a href="#!" class="text-body">Quên mật khẩu?</a>
-                        </div>
-        
-                        <div class="text-center text-lg-start mt-4 pt-2">
-                            <button type="submit" class="btn btn-primary btn-lg"
-                                style="padding-left: 2.5rem; padding-right: 2.5rem;">Đăng nhập</button>
-                            <p class="small fw-bold mt-2 pt-1 mb-0">Bạn không có tài khoản? <a href="#!"
-                                    class="link-danger">Đăng kí</a></p>
                         </div>
                     </form>
                 </div>
@@ -280,19 +438,113 @@
         });
     </script>
     <script>
-        // JavaScript validation logic
+        // Form validation
         document.getElementById('loginForm').addEventListener('submit', function (event) {
-            // Lấy form
-            var form = event.target;
-    
-            // Nếu form không hợp lệ
-            if (!form.checkValidity()) {
+            if (!this.checkValidity()) {
                 event.preventDefault();
                 event.stopPropagation();
             }
-    
-            // Thêm class để hiện thị thông báo lỗi
-            form.classList.add('was-validated');
+            this.classList.add('was-validated');
+        });
+
+        // Password visibility toggle
+        const togglePassword = document.createElement('button');
+        togglePassword.type = 'button';
+        togglePassword.className = 'btn btn-outline-secondary position-absolute end-0 top-50 translate-middle-y me-2';
+        togglePassword.innerHTML = '<i class="bi bi-eye"></i>';
+        togglePassword.onclick = function () {
+            const input = document.getElementById('passwordInput');
+            input.type = input.type === 'password' ? 'text' : 'password';
+            this.innerHTML = `<i class="bi bi-eye${input.type === 'password' ? '' : '-slash'}"></i>`;
+        };
+
+        document.getElementById('passwordInput').parentElement.style.position = 'relative';
+        document.getElementById('passwordInput').parentElement.appendChild(togglePassword);
+
+        // Multi-step form handling
+        let currentStep = 1;
+        const totalSteps = 3;
+
+        function updateStep(step) {
+            // Hide all steps
+            document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
+            // Show current step
+            document.querySelector(`#step${step}`).classList.add('active');
+
+            // Update progress bar
+            const progress = ((step - 1) / (totalSteps - 1)) * 100;
+            document.querySelector('.progress-bar').style.width = `${progress}%`;
+
+            // Update step indicators
+            document.querySelectorAll('.step').forEach((el, index) => {
+                if (index < step) el.classList.add('active');
+                else el.classList.remove('active');
+            });
+
+            // Update buttons
+            document.getElementById('prevBtn').style.display = step > 1 ? 'block' : 'none';
+            document.getElementById('nextBtn').style.display = step < totalSteps ? 'block' : 'none';
+            document.getElementById('submitBtn').style.display = step === totalSteps ? 'block' : 'none';
+        }
+
+        // Next button handler
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateStep(currentStep);
+            }
+        });
+
+        // Previous button handler
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStep(currentStep);
+            }
+        });
+
+        // Password strength checker
+        document.getElementById('password').addEventListener('input', function () {
+            const password = this.value;
+            let strength = 0;
+
+            if (password.match(/[a-z]/)) strength++;
+            if (password.match(/[A-Z]/)) strength++;
+            if (password.match(/[0-9]/)) strength++;
+            if (password.match(/[^a-zA-Z0-9]/)) strength++;
+            if (password.length >= 8) strength++;
+
+            const progressBar = document.querySelector('.password-strength .progress-bar');
+            const strengthText = document.getElementById('strengthText');
+
+            progressBar.style.width = `${strength * 20}%`;
+
+            switch (strength) {
+                case 0:
+                case 1:
+                    progressBar.className = 'progress-bar bg-danger';
+                    strengthText.textContent = 'Yếu';
+                    break;
+                case 2:
+                case 3:
+                    progressBar.className = 'progress-bar bg-warning';
+                    strengthText.textContent = 'Trung bình';
+                    break;
+                case 4:
+                case 5:
+                    progressBar.className = 'progress-bar bg-success';
+                    strengthText.textContent = 'Mạnh';
+                    break;
+            }
+        });
+
+        // Form validation
+        document.getElementById('registerForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            if (!this.checkValidity()) {
+                event.stopPropagation();
+            }
+            this.classList.add('was-validated');
         });
     </script>
     <script type="text/javascript">

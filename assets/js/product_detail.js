@@ -49,7 +49,7 @@ function deleteCart(id, size) {
   displaySubCart();
   displayCart();
   getQuantityCart();
-
+  displayThanhToan();
   alertUpdateCart();
 }
 
@@ -307,8 +307,7 @@ function loadProductDetail(id) {
                 </div>
               </div>
             </div>
-            <a href="#" class="btn bg-main-detail shadow-0"> Mua ngay </a>
-            <button type="button" class="btn bg-button" id="toastbtn" onclick="check()">Thêm vào giỏ hàng</button>
+            <button type="button" class="btn bg-button w-75" id="toastbtn" onclick="check()">Thêm vào giỏ hàng</button>
             <div class="thongbao toast-container position-fixed top-0 end-0 p-3">
               <div class="toast bg-main text-white" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
