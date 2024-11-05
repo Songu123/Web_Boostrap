@@ -1,3 +1,4 @@
+// Lấy thông tin Tỉnh thành, Quận huyện, Phường xã
 
 var citis = document.getElementById("city");
 var districts = document.getElementById("district");
@@ -39,4 +40,63 @@ if (this.value != "") {
 }
 };
 }
+
+// End lấy thông tin Tỉnh thành, Quận huyện, Phường xã
+
+// Lấy thông tin giỏ hàng
+function displayCheckout() {
+    const carts = JSON.parse(localStorage.getItem('carts')) || [];
+    const poloProducts = JSON.parse(localStorage.getItem('polo')) || [];
+    const aothunProducts = JSON.parse(localStorage.getItem('aothun')) || [];
+    const quanthunProducts = JSON.parse(localStorage.getItem('quanthun')) || [];
+    const quanlotProducts = JSON.parse(localStorage.getItem('brief')) || [];
+
+    const allProducts = poloProducts.concat(aothunProducts, quanthunProducts, quanlotProducts);
+    const checkoutValue = document.getElementById("checkout_value");
+    let totalAmount = 0;
+
+    checkoutValue.innerHTML = ""; // Clear existing content
+
+    carts.forEach(cart => {
+        const product = allProducts.find(product => product.id === cart.id);
+
+        if (product) {
+            const price = Number(product.price.replace(/\./g, ""));
+            const quantity = Number(cart.quantity);
+            const subtotal = price * quantity;
+            totalAmount += subtotal;
+
+            checkoutValue.innerHTML += `
+                <tr>
+                    <td>
+                        <span>${product.name}</span>
+                        <span>× ${cart.quantity}</span>
+                        <p class="mb-0">Màu sắc: Xanh đen</p>
+                        <p class="mb-0">Size: ${cart.size}</p>
+                    </td>
+                    <td>${subtotal.toLocaleString('de-DE')} ₫</td>
+                </tr>
+            `;
+        }
+    });
+
+    // Update footer totals
+    const tfoot = document.querySelector("tfoot");
+    if (tfoot) {
+        tfoot.innerHTML = `
+            <tr>
+                <td>Tạm tính</td>
+                <td>${totalAmount.toLocaleString('de-DE')} ₫</td>
+            </tr>
+            <tr>
+                <td>Tổng</td>
+                <td>${totalAmount.toLocaleString('de-DE')} ₫</td>
+            </tr>
+        `;
+    }
+}
+
+// Call the function when page loads
+displayCheckout();
+
 
