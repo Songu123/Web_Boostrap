@@ -119,19 +119,35 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 
+// Hàm lấy dữ liệu từ localstorage
+function getLocalStorage(key) {
+  return JSON.parse(localStorage.getItem(key)) || [];
+}
+
+// Hàm lấy danh sách sản phẩm theo category
+function getProductsByCategory(category) {
+  const products = getLocalStorage('products'); // Lấy danh sách sản phẩm từ localStorage
+  return products.filter(product => product.category === category); // Lọc theo category
+}
+
 
 // Hàm load sản phẩm từ localStorage và hiển thị
 function loadProducts() {
-  const poloProducts = JSON.parse(localStorage.getItem('polo')) || [];
-  const aothunProducts = JSON.parse(localStorage.getItem('aothun')) || [];
-  const quanthunProducts = JSON.parse(localStorage.getItem('quanthun')) || [];
-  const quanlotProducts = JSON.parse(localStorage.getItem('brief')) || [];
 
+  const poloProducts = getProductsByCategory('polo');
+  const aothunProducts = getProductsByCategory('aothun');
+  const quanthunProducts = getProductsByCategory('quanthun');
+  const quanlotProducts = getProductsByCategory('brief');
+  const mixProducts = getLocalStorage('products');
+
+
+  const newProductContainer = document.querySelector("#new-product");
   const poloProductContainer = document.querySelector("#aopolo-product");
   const aothunProductContainer = document.querySelector("#aothun-product");
   const quanthunProductContainer = document.querySelector("#quanthun-product");
   const quantlotProductContainer = document.querySelector("#quanlot-product");
 
+  newProductContainer.innerHTML = '';
   poloProductContainer.innerHTML = '';
   aothunProductContainer.innerHTML = '';
   quanthunProductContainer.innerHTML = '';
@@ -143,8 +159,8 @@ function loadProducts() {
       <div class="col-sm-6 col-md-4 col-lg-3 px-3 mt-4">
         <a href="./product_detail.html?id=${product.id}" class="text-decoration-none">
           <div class="card product-card shadow-sm">
-            <div class="position-relative overflow-hidden">
-              <div class="img-container w-100">
+            <div class="overflow-hidden">
+              <div class="position-relative img-container w-100">
                 <img src="${product.img1}" class="card-img-top"
                   alt="Product Image">
                 <img src="${product.img2}"
@@ -165,21 +181,8 @@ function loadProducts() {
             </div>
             <div class="card-body">
               <div class="">
-                <h5 class="card-title">${product.name}</h5>
+                <span class="card-title">${product.name}</span>
                 <p class="price fw-bold">${price.toLocaleString('de-DE')} ₫</p>
-              </div>
-              <div class="">
-                <div class="d-flex">
-                  <p class="text-muted">Màu sắc</p>
-                  <div class="d-flex ps-2">
-                    <img src="./assets/images/products/image.jpg" alt="color1"
-                      class="rounded-circle me-2" width="30" height="30">
-                    <img src="./assets/images/products/z5018069269739-aa5c5764d2d4602bb8b55ec50edad312-600x600.jpg"
-                      alt="color2" class="rounded-circle me-2" width="30" height="30">
-                    <img src="./assets/images/products/image.jpg" alt="color3"
-                      class="rounded-circle" width="30" height="30">
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -189,6 +192,7 @@ function loadProducts() {
     container.appendChild(document.createElement('div')).outerHTML = productHTML;
   };
 
+  mixProducts.forEach((product) => renderProduct(product, newProductContainer))
   poloProducts.forEach((product) => renderProduct(product, poloProductContainer));
   aothunProducts.forEach((product) => renderProduct(product, aothunProductContainer));
   quanthunProducts.forEach((product) => renderProduct(product, quanthunProductContainer));

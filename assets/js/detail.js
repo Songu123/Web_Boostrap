@@ -1,21 +1,21 @@
 // Hàm lấy tham số query từ URL
 function getQueryParam(param) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
-  }
-  
-  // Lấy ID sản phẩm từ URL
-  const productId = getQueryParam('id');
-  
-  // Hiển thị chi tiết sản phẩm dựa trên ID
-  function loadProductDetail(id) {
-    var products = JSON.parse(localStorage.getItem('polo')) || [];
-  
-    // Tìm sản phẩm theo ID
-    const product = products.find(product => product.id === id);
-  
-    if (product) {
-      document.getElementById("product-detail").innerHTML = `
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
+}
+
+// Lấy ID sản phẩm từ URL
+const productId = getQueryParam('id');
+
+// Hiển thị chi tiết sản phẩm dựa trên ID
+function loadProductDetail(id) {
+  var products = JSON.parse(localStorage.getItem('products')) || [];
+
+  // Tìm sản phẩm theo ID
+  const product = products.find((product) => product.id === id);
+
+  if (product) {
+    document.getElementById('product-detail').innerHTML = `
        <div class="col-lg-6 col-md-12">
                 <img src="${product.img1}" class="img-fluid rounded" alt="Áo Polo Nam Bird">
             </div>
@@ -59,16 +59,16 @@ function getQueryParam(param) {
                     <button type="button" class="btn btn-dark w-50 border border-light">MUA NGAY</button>
                 </div>
             </div>`;
-    } else {
-      alert('Sản phẩm không tồn tại');
-    }
+  } else {
+    alert('Sản phẩm không tồn tại');
   }
-  
-  // Gọi hàm để hiển thị chi tiết sản phẩm
-  if (productId) {
-    loadProductDetail(productId);
-  }
-  
+}
+
+// Gọi hàm để hiển thị chi tiết sản phẩm
+if (productId) {
+  loadProductDetail(productId);
+}
+
 // Điểu chỉnh chỉnh số lượng mua hàng
 // Lấy các phần tử từ DOM
 const decreaseBtn = document.getElementById('decreaseBtn');
@@ -79,19 +79,18 @@ const quantityValue = document.getElementById('quantityValue');
 let currentQuantity = parseInt(quantityValue.value);
 
 // Xử lý khi nhấn nút tăng
-increaseBtn.addEventListener('click', function() {
-    currentQuantity += 1;
-    quantityValue.value = currentQuantity;
+increaseBtn.addEventListener('click', function () {
+  currentQuantity += 1;
+  quantityValue.value = currentQuantity;
 });
 
 // Xử lý khi nhấn nút giảm
-decreaseBtn.addEventListener('click', function() {
-    if (currentQuantity > 1) {
-        currentQuantity -= 1;
-    }
-    quantityValue.value = currentQuantity;
+decreaseBtn.addEventListener('click', function () {
+  if (currentQuantity > 1) {
+    currentQuantity -= 1;
+  }
+  quantityValue.value = currentQuantity;
 });
-
 
 const giam = document.getElementById('button-addon1');
 const tang = document.getElementById('button-addon2');
@@ -101,15 +100,15 @@ const quantity_product = document.getElementById('quantity_product');
 // let giatrihientai = parseInt(quantity_product.value);
 
 // Xử lý khi nhấn nút tăng
-tang.addEventListener('click', function() {
-    currentQuantity += 1;
-    quantity_product.value = currentQuantity;
+tang.addEventListener('click', function () {
+  currentQuantity += 1;
+  quantity_product.value = currentQuantity;
 });
 
 // Xử lý khi nhấn nút giảm
-giam.addEventListener('click', function() {
-    if (currentQuantity > 1) {
-        currentQuantity -= 1;
-    }
-    quantity_product.value = currentQuantity;
+giam.addEventListener('click', function () {
+  if (currentQuantity > 1) {
+    currentQuantity -= 1;
+  }
+  quantity_product.value = currentQuantity;
 });

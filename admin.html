@@ -1,305 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="./assets/css/admin.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-  <link rel="stylesheet" href="./assets/css/admin.css">
-  <link rel=”stylesheet” href=”https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css” />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
+  <body>
+    <div class="wrapper">
+      <!-- Sidebar -->
+      <nav id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+          <h3>ADMIN</h3>
+        </div>
 
-<body>
-  <div class="admin-main row">
-    <div id="admin-content-left" class="scrollable-div col-3 category">
-      <h1 class="fw-bold py-4 px-3">ADMIN</h1>
-      <div class="accordion pt-5 border-top" id="accordionPanelsStayOpenExample">
-        <div class="accordion-item my-3 border">
-          <h2 class="accordion-header">
-            <button class="hover-item fs-5 accordion-button collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
-              aria-controls="panelsStayOpen-collapseOne">
-              Áo nam
-            </button>
-          </h2>
-          <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse" style="">
-            <div class="accordion-body p-0">
-              <ul class="list-unstyled m-0">
-                <li class="hover-item py-3 px-3 my-2" onclick="displayData('polo', false)">
-                  Áo Polo
-                </li>
-                <li class="hover-item py-3 px-3 my-2" onclick="displayData('aothun', false)">
-                  Áo Thun
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item my-3 border">
-          <h2 class="accordion-header">
-            <button class="hover-item fs-5 accordion-button collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
-              aria-controls="panelsStayOpen-collapseTwo">
-              Quần nam
-            </button>
-          </h2>
-          <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" style="">
-            <div class="accordion-body p-0">
-              <ul class="list-unstyled m-0">
-                <li class="hover-item py-3 px-3  my-2" onclick="displayData('kaki', false)">
-                  Quần Kaki
-                </li>
-                <li class="hover-item py-3 px-3  my-2" onclick="displayData('quanthun',false)">
-                  Quần Thun
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item my-3 border">
-          <h2 class="accordion-header">
-            <button class="hover-item fs-5 accordion-button collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
-              aria-controls="panelsStayOpen-collapseThree">
-              Đồ lót
-            </button>
-          </h2>
-          <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" style="">
-            <div class="accordion-body p-0">
-              <ul class="list-unstyled m-0">
-                <li class="hover-item py-3 px-3  my-2" onclick="displayData('brief', false)">
-                  Brief
-                </li>
-                <li class="hover-item py-3 px-3  my-2" onclick="displayData('boxer', false)">
-                  Boxer
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item my-3 border cursor-pointer" onclick="displayData('account', true)">
-          <h2 class="hover-item d-flex align-items-center m-0 py-3 px-4 fs-5">
-              Account
-          </h2>
-        </div>
-      </div>
-    </div>
-    <div id="admin-content-right shadow" class="scrollable-div col-9 container">
-      <div class="bg-main text-light p-3">
-        <div class="row">
-          <div class="col-6 d-flex">
-            <button type="button" class="btn btn-secondary me-3">
+        <ul class="list-unstyled components">
+          <li class="active">
+            <a href="#" onclick="displayData('dashboard', true)">
+              <i class="bi bi-speedometer2"></i>
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="#" onclick="displayData('orders', true)">
+              <i class="bi bi-card-list"></i>
+              Đơn Hàng
+            </a>
+          </li>
+
+          <li>
+            <a href="#productSubmenu" data-bs-toggle="collapse" class="dropdown-toggle">
+              <i class="bi bi-box"></i>
+              Sản Phẩm
+            </a>
+            <ul class="collapse list-unstyled" id="productSubmenu">
+              <li><a href="#" onclick="displayData('polo', false)">Áo Polo</a></li>
+              <li><a href="#" onclick="displayData('aothun', false)">Áo Thun</a></li>
+              <li><a href="#" onclick="displayData('kaki', false)">Quần Kaki</a></li>
+              <li><a href="#" onclick="displayData('quanthun', false)">Quần Thun</a></li>
+              <li><a href="#" onclick="displayData('brief', false)">Brief</a></li>
+              <li><a href="#" onclick="displayData('boxer', false)">Boxer</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="displayData('account', true)">
+              <i class="bi bi-people"></i>
+              Tài Khoản
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Page Content -->
+      <div id="content">
+        <!-- Top Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+            <button type="button" id="sidebarCollapse" onclick="showHideMenu()" class="btn btn-info">
               <i class="bi bi-list"></i>
             </button>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
-          <div class="col-6 d-flex justify-content-end">
-            <button class="icon-menu px-2 mx-1">
-              <i class="bi bi-bell-fill"></i>
-            </button>
-            <button class="icon-menu px-2 mx-1">
-              <i class="bi bi-chat-square-text-fill"></i>
-            </button>
-            <button class="icon-menu px-2 mx-1">
-              <i class="bi bi-person-circle"></i>
-            </button>
-          </div>
-        </div>
-        <div class="">
-          <h1>Darhboard</h1>
-          <p>View / Dashboard</p>
-        </div>
-      </div>
-      <div class="table-content container">
-        <div class="d-flex bg-main p-3 px-5 justify-content-between align-items-center my-3">
-          <!-- Button trigger modal -->
-          <h3 class="name-title text-light m-0">Áo Nam Polo</h3>
-          <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add
-            new</button>
-        </div>
-        <!-- Modal Add New-->
-   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <!-- Modal Header -->
-      <div class="modal-header bg-primary text-white">
-        <div class="modal-title-wrapper">
-          <h5 class="modal-title">
-            <i class="bi bi-plus-circle me-2"></i>
-            Thêm Sản Phẩm Mới
-          </h5>
-          <small class="modal-subtitle">Điền thông tin sản phẩm bên dưới</small>
-        </div>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-      </div>
-
-      <!-- Modal Body -->
-      <div class="modal-body">
-        <form id="productForm" class="needs-validation" novalidate>
-          <div class="form-group mb-3">
-            <label class="form-label">
-              <i class="bi bi-tag me-1"></i>
-              Tên Sản Phẩm
-            </label>
-            <input 
-              type="text" 
-              class="form-control product-name" 
-              placeholder="VD: Áo Polo Nam"
-              required
-            >
-            <div class="invalid-feedback">Vui lòng nhập tên sản phẩm</div>
-          </div>
-
-          <div class="form-group mb-3">
-            <label class="form-label">
-              <i class="bi bi-card-text me-1"></i>
-              Mô Tả
-            </label>
-            <textarea 
-              class="form-control product-describe" 
-              rows="3"
-              placeholder="Mô tả chi tiết sản phẩm..."
-              required
-            ></textarea>
-          </div>
-
-          <div class="form-group mb-3">
-            <label class="form-label">
-              <i class="bi bi-currency-dollar me-1"></i>
-              Giá
-            </label>
-            <div class="input-group">
-              <span class="input-group-text">$</span>
-              <input 
-                type="number" 
-                class="form-control product-price"
-                placeholder="0.00"
-                required
-              >
+            <div class="d-flex align-items-center">
+              <form class="d-flex me-3" onsubmit="searchProducts(event)">
+                <input
+                  class="form-control me-2"
+                  type="search"
+                  placeholder="Tìm kiếm sản phẩm"
+                  aria-label="Search"
+                  id="searchInput"
+                />
+                <button class="btn btn-outline-success" type="submit">Tìm</button>
+              </form>
+              <div class="dropdown">
+                <button
+                  class="btn btn-link dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-bs-toggle="dropdown"
+                >
+                  <i class="bi bi-person-circle"></i>
+                  <span id="adminName"></span>
+                  <!-- Hiển thị tên admin -->
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li><a class="dropdown-item" onclick="logoutAdmin()" href="#">Logout</a></li>
+                </ul>
+              </div>
             </div>
           </div>
+        </nav>
 
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group mb-3">
-                <label class="form-label">
-                  <i class="bi bi-image me-1"></i>
-                  Hình Ảnh 1
-                </label>
-                <div class="input-group">
-                  <input 
-                    type="file" 
-                    class="form-control product-img1"
-                    accept="image/*"
-                    required
-                  >
-                  <label class="input-group-text">
-                    <i class="bi bi-upload"></i>
-                  </label>
+        <!-- Main Content -->
+        <div class="container-fluid">
+          <!-- Dashboard Stats -->
+          <div class="row mb-4">
+            <div class="col-md-3">
+              <div class="card stat-card">
+                <div class="card-body">
+                  <h5 class="card-title">Tổng Sản Phẩm</h5>
+                  <h2 class="card-text" id="totalProducts">0</h2>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="form-group mb-3">
-                <label class="form-label">
-                  <i class="bi bi-image me-1"></i>
-                  Hình Ảnh 2
-                </label>
-                <div class="input-group">
-                  <input 
-                    type="file" 
-                    class="form-control product-img2"
-                    accept="image/*"
-                    required
-                  >
-                  <label class="input-group-text">
-                    <i class="bi bi-upload"></i>
-                  </label>
+            <div class="col-md-3">
+              <div class="card stat-card">
+                <div class="card-body">
+                  <h5 class="card-title">Tổng Đơn Hàng</h5>
+                  <h2 class="card-text" id="totalOrders">0</h2>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card stat-card">
+                <div class="card-body">
+                  <h5 class="card-title">Tổng Người Dùng</h5>
+                  <h2 class="card-text" id="totalUsers">0</h2>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card stat-card">
+                <div class="card-body">
+                  <h5 class="card-title">Doanh Thu</h5>
+                  <h2 class="card-text" id="totalRevenue">$0</h2>
                 </div>
               </div>
             </div>
           </div>
-        </form>
-      </div>
 
-      <!-- Modal Footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-light" data-bs-dismiss="modal">
-          <i class="bi bi-x-circle me-1"></i>
-          Hủy
-        </button>
-        <button type="submit" class="btn btn-primary" onclick="saveData()">
-          <i class="bi bi-check-circle me-1"></i>
-          Lưu Sản Phẩm
-        </button>
+          <!-- Data Table -->
+          <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h5 class="mb-0">Quản Lý Sản Phẩm</h5>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                <i class="bi bi-plus-circle"></i>
+                Thêm Sản Phẩm
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Tên</th>
+                      <th>Mô Tả</th>
+                      <th>Giá</th>
+                      <th>Danh mục</th>
+                      <th>Hình Ảnh 1</th>
+                      <th>Hình Ảnh 2</th>
+                      <th>Thao Tác</th>
+                    </tr>
+                  </thead>
+                  <tbody id="myElement">
+                    <!-- Dữ liệu sản phẩm sẽ được thêm vào đây -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div> <!-- Kết thúc bảng sản phẩm -->
+        </div> <!-- Kết thúc card-body -->
+      </div> <!-- Kết thúc card -->
+
+      <!-- Quản Lý Đơn Hàng -->
+      <div class="card mt-4" id="orders-section" style="display: none;">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">Quản Lý Đơn Hàng</h5>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>ID Đơn Hàng</th>
+                  <th>Khách Hàng</th>
+                  <th>Tổng Tiền</th>
+                  <th>Ngày Đặt</th>
+                  <th>Trạng Thái</th>
+                  <th>Thao Tác</th>
+                </tr>
+              </thead>
+              <tbody id="orderTable">
+                <!-- Danh sách đơn hàng sẽ được thêm vào đây -->
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-        <!-- End Modal Add New-->
-        <table class="table">
-          <thead>
-            <!-- <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Name</th>
-              <th scope="col">Describe</th>
-              <th scope="col">Price</th>
-              <th scope="col">Image 1</th>
-              <th scope="col">Image 2</th>
-              <th scope="col">Actions</th>
-            </tr> -->
 
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Username</th> 
-              <th scope="col">Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">Password</th>
-              <th scope="col">Role</th>
-              <th scope="col" class="col-3">Actions</th>
-            </tr>
-          </thead>
-          <tbody id="myElement" style="max-height: 10rem; height: 25rem;">
-            <!-- <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>$100</td>
-              <td><img src="./assets/images/products/z4904974071885-559ad89cb6cb19d9d56cfe0dd228483b-600x600.jpg" alt=""
-                  class="w-img"></td>
-              <td><img src="./assets/images/products/z4992841998680-772f8320491b4f66c8a475b5fe3f0816-600x600.jpg" alt=""
-                  class="w-img"></td>
-              <td>
-                <div class="">
-                  <button type="button" class="btn btn-primary">Update</button>
-                  <button type="button" class="btn btn-danger">Delete</button>
-                </div>
-              </td>
-            </tr> -->
-          </tbody>
-        </table>
+    <!-- Modal Thêm Sản Phẩm -->
+    <div
+      class="modal fade"
+      id="addProductModal"
+      tabindex="-1"
+      aria-labelledby="addProductModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addProductModalLabel">Thêm Sản Phẩm Mới</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label>Tên Sản Phẩm</label>
+              <input type="text" class="form-control product-name" placeholder="Nhập tên sản phẩm" required />
+            </div>
+            <div class="form-group">
+              <label>Mô Tả</label>
+              <input type="text" class="form-control product-describe" placeholder="Nhập mô tả" required />
+            </div>
+            <div class="form-group">
+              <label>Giá</label>
+              <input type="number" class="form-control product-price" placeholder="Nhập giá" required />
+            </div>
+            <div class="form-group">
+              <label>Hình Ảnh 1</label>
+              <input type="file" class="form-control product-img1" accept="image/*" required />
+            </div>
+            <div class="form-group">
+              <label>Hình Ảnh 2</label>
+              <input type="file" class="form-control product-img2" accept="image/*" required />
+            </div>
+            <div class="form-group">
+              <label>Danh Mục</label>
+              <select class="form-control category-select" required>
+                <option value="polo">Áo Polo</option>
+                <option value="aothun">Áo Thun</option>
+                <option value="kaki">Quần Kaki</option>
+                <option value="quanthun">Quần Thun</option>
+                <option value="brief">Brief</option>
+                <option value="boxer">Boxer</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            <button type="button" class="btn btn-primary" onclick="saveProduct()">Thêm Sản Phẩm</button>
+          </div>
+        </div>
       </div>
-      
-      <div class="footer-main bg-main p-4"></div>
     </div>
-  </div>
-</body>
-<script src="./assets/js/admin.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-  integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/admin.js"></script>
+    <script src="./assets/js/admin-login.js"></script>
+  </body>
 </html>
