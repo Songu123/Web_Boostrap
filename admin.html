@@ -35,7 +35,6 @@
               Đơn Hàng
             </a>
           </li>
-
           <li>
             <a href="#productSubmenu" data-bs-toggle="collapse" class="dropdown-toggle">
               <i class="bi bi-box"></i>
@@ -51,7 +50,7 @@
             </ul>
           </li>
           <li>
-            <a href="#" onclick="displayData('account', true)">
+            <a href="#" onclick="displayData('account', false)">
               <i class="bi bi-people"></i>
               Tài Khoản
             </a>
@@ -87,7 +86,6 @@
                 >
                   <i class="bi bi-person-circle"></i>
                   <span id="adminName"></span>
-                  <!-- Hiển thị tên admin -->
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
                   <li><a class="dropdown-item" href="#">Profile</a></li>
@@ -104,7 +102,7 @@
         <div class="container-fluid">
           <!-- Dashboard Stats -->
           <div class="row mb-4">
-            <div class="col-md-3">
+            <div class="col-6 col-md-3 mb-3">
               <div class="card stat-card">
                 <div class="card-body">
                   <h5 class="card-title">Tổng Sản Phẩm</h5>
@@ -112,7 +110,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-6 col-md-3 mb-3">
               <div class="card stat-card">
                 <div class="card-body">
                   <h5 class="card-title">Tổng Đơn Hàng</h5>
@@ -120,7 +118,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-6 col-md-3 mb-3">
               <div class="card stat-card">
                 <div class="card-body">
                   <h5 class="card-title">Tổng Người Dùng</h5>
@@ -128,7 +126,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-6 col-md-3 mb-3">
               <div class="card stat-card">
                 <div class="card-body">
                   <h5 class="card-title">Doanh Thu</h5>
@@ -168,45 +166,142 @@
                 </table>
               </div>
             </div>
-          </div> <!-- Kết thúc bảng sản phẩm -->
-        </div> <!-- Kết thúc card-body -->
-      </div> <!-- Kết thúc card -->
+          </div>
 
-      <!-- Quản Lý Đơn Hàng -->
-      <div class="card mt-4" id="orders-section" style="display: none;">
-        <div class="card-header d-flex justify-content-between align-items-center">
-          <h5 class="mb-0">Quản Lý Đơn Hàng</h5>
-        </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th>ID Đơn Hàng</th>
-                  <th>Khách Hàng</th>
-                  <th>Tổng Tiền</th>
-                  <th>Ngày Đặt</th>
-                  <th>Trạng Thái</th>
-                  <th>Thao Tác</th>
-                </tr>
-              </thead>
-              <tbody id="orderTable">
-                <!-- Danh sách đơn hàng sẽ được thêm vào đây -->
-              </tbody>
-            </table>
+          <!-- Quản Lý Tài Khoản -->
+          <div class="card mt-4" id="account-section" style="display: none">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h5 class="mb-0">Quản Lý Tài Khoản Người Dùng</h5>
+              <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                <i class="bi bi-plus-circle"></i>
+                Thêm Tài Khoản
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Tên Đăng Nhập</th>
+                      <th>Email</th>
+                      <th>Mật Khẩu</th>
+                      <th>Role</th>
+                      <th>Thao Tác</th>
+                    </tr>
+                  </thead>
+                  <tbody id="userTable">
+                    <!-- Danh sách tài khoản sẽ được thêm vào đây -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal Thêm Tài Khoản -->
+          <div class="modal fade" id="addUserModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Thêm Tài Khoản</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                  <form id="addUserForm">
+                    <div class="mb-3">
+                      <label for="username" class="form-label">Tên Đăng Nhập</label>
+                      <input type="text" class="form-control" id="username" required />
+                    </div>
+                    <div class="mb-3">
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="email" required />
+                    </div>
+                    <div class="mb-3">
+                      <label for="password" class="form-label">Mật Khẩu</label>
+                      <input type="password" class="form-control" id="password" required />
+                    </div>
+                    <div class="mb-3">
+                      <label for="role" class="form-label">Role</label>
+                      <select class="form-control" id="role" required>
+                        <option value="admin">Admin</option>
+                        <option value="user">User</option>
+                      </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Thêm</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal Chỉnh Sửa Tài Khoản -->
+          <div class="modal fade" id="editUserModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Chỉnh Sửa Tài Khoản</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                  <form id="editUserForm">
+                    <input type="hidden" id="editUserId" />
+                    <div class="mb-3">
+                      <label for="editUsername" class="form-label">Tên Đăng Nhập</label>
+                      <input type="text" class="form-control" id="editUsername" required />
+                    </div>
+                    <div class="mb-3">
+                      <label for="editEmail" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="editEmail" required />
+                    </div>
+                    <div class="mb-3">
+                      <label for="editPassword" class="form-label">Mật Khẩu</label>
+                      <input type="password" class="form-control" id="editPassword" required />
+                    </div>
+                    <div class="mb-3">
+                      <label for="editRole" class="form-label">Role</label>
+                      <select class="form-control" id="editRole" required>
+                        <option value="admin">Admin</option>
+                        <option value="user">User</option>
+                      </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Lưu Thay Đổi</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quản Lý Đơn Hàng -->
+          <div class="card mt-4" id="orders-section" style="display: none">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h5 class="mb-0">Quản Lý Đơn Hàng</h5>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID Đơn Hàng</th>
+                      <th>Khách Hàng</th>
+                      <th>Tổng Tiền</th>
+                      <th>Ngày Đặt</th>
+                      <th>Trạng Thái</th>
+                      <th>Thao Tác</th>
+                    </tr>
+                  </thead>
+                  <tbody id="orderTable">
+                    <!-- Danh sách đơn hàng sẽ được thêm vào đây -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Modal Thêm Sản Phẩm -->
-    <div
-      class="modal fade"
-      id="addProductModal"
-      tabindex="-1"
-      aria-labelledby="addProductModalLabel"
-      aria-hidden="true"
-    >
+    <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">

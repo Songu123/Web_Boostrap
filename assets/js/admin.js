@@ -6,21 +6,21 @@ const randomString = (length = 8) => {
 
 // Hàm lưu trữ localStorage
 const getLocalStorage = (key) => {
-    try {
-      return JSON.parse(localStorage.getItem(key)) || [];
-    } catch (error) {
-      console.error(`Lỗi khi đọc dữ liệu từ localStorage với key "${key}":`, error);
-      return [];
-    }
-  };
-  
-  const setLocalStorage = (key, value) => {
-    try {
-      localStorage.setItem(key, JSON.stringify(value));
-    } catch (error) {
-      console.error(`Lỗi khi lưu dữ liệu vào localStorage với key "${key}":`, error);
-    }
-  };
+  try {
+    return JSON.parse(localStorage.getItem(key)) || [];
+  } catch (error) {
+    console.error(`Lỗi khi đọc dữ liệu từ localStorage với key "${key}":`, error);
+    return [];
+  }
+};
+
+const setLocalStorage = (key, value) => {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch (error) {
+    console.error(`Lỗi khi lưu dữ liệu vào localStorage với key "${key}":`, error);
+  }
+};
 // Hàm thêm sản phẩm
 const saveProduct = () => {
   console.log('hello');
@@ -72,41 +72,60 @@ const saveProduct = () => {
 
 // Hàm hiển thị dữ liệu
 const displayData = (type, isDashboard) => {
+  // Lấy các phần tử giao diện
+  const dashboardStats = document.querySelector('.row.mb-4'); // Thống kê Dashboard
+  const productSection = document.querySelector('.card'); // Bảng sản phẩm
+  const accountSection = document.getElementById('account-section'); // Phần tài khoản
+  const ordersSection = document.getElementById('orders-section'); // Phần đơn hàng
+  const tableBody = document.getElementById('myElement'); // Bảng sản phẩm
+  const cardHeaderTitle = document.querySelector('.card-header h5'); // Tiêu đề bảng sản phẩm
+
+  // Ẩn tất cả các section trước
+  dashboardStats.style.display = 'none';
+  productSection.style.display = 'none';
+  accountSection.style.display = 'none';
+  ordersSection.style.display = 'none';
+  tableBody.innerHTML = ''; // Xóa nội dung bảng sản phẩm
+
+  // Lấy dữ liệu từ localStorage
   const products = getLocalStorage('products');
-  const tableBody = document.getElementById('myElement');
-  const dashboardStats = document.querySelector('.row.mb-4');
-  const cardHeaderTitle = document.querySelector('.card-header h5');
+  const users = getLocalStorage('users');
+  const orders = getLocalStorage('orders'); // Lấy danh sách đơn hàng từ localStorage
 
-  // Hiển thị hoặc ẩn dashboard stats
-  dashboardStats.style.display = isDashboard ? 'flex' : 'none';
-
-  // Xóa nội dung bảng trước khi hiển thị mới
-  tableBody.innerHTML = '';
-
-  if (isDashboard) {
-    // Hiển thị tất cả sản phẩm khi vào Dashboard
+  if (type === 'dashboard' && isDashboard) {
+    // Hiển thị Dashboard
+    dashboardStats.style.display = 'flex';
+    productSection.style.display = 'block';
     cardHeaderTitle.textContent = 'Quản Lý Sản Phẩm (Tất cả)';
-    products.forEach((product) => {
-      tableBody.innerHTML += createProductRow(product);
-    });
+    if (products.length === 0) {
+      tableBody.innerHTML = '<tr><td colspan="8" class="text-center">Chưa có sản phẩm nào</td></tr>';
+    } else {
+      products.forEach((product) => {
+        tableBody.innerHTML += createProductRow(product);
+      });
+    }
+    loadDashboardStats(); // Cập nhật thống kê
+  } else if (type === 'orders') {
+    // Hiển thị Đơn Hàng
+    ordersSection.style.display = 'block';
+    loadOrders(); // Tải danh sách đơn hàng
   } else if (type === 'account') {
-    // Xử lý hiển thị tài khoản (chưa triển khai)
-    cardHeaderTitle.textContent = 'Quản Lý Tài Khoản';
-    tableBody.innerHTML = '<tr><td colspan="8">Chưa có dữ liệu tài khoản</td></tr>';
+    // Hiển thị Tài Khoản
+    accountSection.style.display = 'block';
+    loadUsers(); // Tải danh sách tài khoản
   } else {
-    // Lọc sản phẩm theo danh mục
+    // Hiển thị sản phẩm theo danh mục
+    productSection.style.display = 'block';
     const filteredProducts = products.filter((product) => product.category === type);
     cardHeaderTitle.textContent = `Quản Lý Sản Phẩm (${getCategoryName(type)})`;
-
     if (filteredProducts.length === 0) {
-      tableBody.innerHTML = '<tr><td colspan="8">Chưa có sản phẩm trong danh mục này</td></tr>';
+      tableBody.innerHTML = '<tr><td colspan="8" class="text-center">Chưa có sản phẩm trong danh mục này</td></tr>';
     } else {
       filteredProducts.forEach((product) => {
         tableBody.innerHTML += createProductRow(product);
       });
     }
   }
-
 };
 
 // Hàm tạo hàng sản phẩm cho bảng
@@ -204,7 +223,7 @@ const createUpdateModal = (product) => `
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="button" onclick="saveUpdate('${
+                    <button type="button" data-bs-dismiss="modal" onclick="saveUpdate('${
                       product.id
                     }')" class="btn btn-primary">Lưu Thay Đổi</button>
                 </div>
@@ -236,7 +255,19 @@ const saveUpdate = (id) => {
       setLocalStorage('products', products);
       displayData(category, false); // Hiển thị danh sách theo danh mục vừa cập nhật
       updateDashboardStats();
-      bootstrap.Modal.getInstance(document.getElementById(`staticUpdate${id}`)).hide();
+
+      // Kiểm tra và đóng modal nếu tồn tại
+      const modalElement = document.getElementById(`staticUpdate${id}`);
+      if (modalElement) {
+        const modalInstance = bootstrap.Modal.getInstance(modalElement);
+        if (modalInstance) {
+          modalInstance.hide();
+        } else {
+          console.warn(`Modal instance for ID staticUpdate${id} not found.`);
+        }
+      } else {
+        console.warn(`Modal element with ID staticUpdate${id} not found in DOM.`);
+      }
     };
 
     const handleImageUpdate = (imgInput, imgIndex, callback) => {
@@ -324,11 +355,12 @@ function loadDashboardStats() {
   // Lấy danh sách sản phẩm từ localStorage
   const products = getLocalStorage('products') || []; // Nếu không có sản phẩm, trả về mảng rỗng
   const orders = getLocalStorage('orders') || []; // Nếu không có đơn hàng, trả về mảng rỗng
+  const users = getLocalStorage('account') || []; // Nếu không có người dùng, trả về mảng rỗng
 
   // Tính toán các thống kê
   const totalProducts = products.length; // Tổng số sản phẩm
   const totalOrders = orders.length; // Tổng số đơn hàng
-  const totalUsers = Math.floor(totalOrders * 0.3); // Giả lập số lượng người dùng
+  const totalUsers = users.length; // Giả lập số lượng người dùng
   const totalRevenue = orders.reduce((sum, order) => sum + (order.total || 0), 0).toLocaleString(); // Tổng doanh thu từ đơn hàng
 
   // Hiển thị các giá trị thống kê lên giao diện
@@ -338,6 +370,7 @@ function loadDashboardStats() {
   document.getElementById('totalRevenue').innerText = `${totalRevenue} đ`;
 }
 
+// Begin Quản lý đơn hàng
 // Giả lập danh sách đơn hàng (có thể thay bằng API từ backend)
 let orders = [
   { id: 101, customer: 'Nguyễn Văn A', total: 500000, date: '2025-03-25', status: 'Chờ Xác Nhận' },
@@ -407,20 +440,138 @@ function viewOrder(index) {
   );
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  loadOrders(); // Tải danh sách đơn hàng
-  loadDashboardStats(); // Tải và hiển thị thống kê
-  displayData('dashboard', true);
-});
-
-
+// document.addEventListener('DOMContentLoaded', function () {
+//   loadOrders(); // Tải danh sách đơn hàng
+//   loadDashboardStats(); // Tải và hiển thị thống kê
+//   displayData('dashboard', true);
+// });
 
 // Ẩn hiện thanh bar
-function showHideMenu(){
+function showHideMenu() {
   const sidebar = document.querySelector('#sidebar');
   const content = document.querySelector('#content');
   content.classList.toggle('active');
   sidebar.classList.toggle('active');
 }
 
+// Begin Quản lý tài khoản
 
+// Hàm hiển thị danh sách tài khoản
+function loadUsers() {
+  const users = getLocalStorage('account');
+  const userTable = document.getElementById('userTable');
+  userTable.innerHTML = '';
+
+  if (users.length === 0) {
+    userTable.innerHTML = '<tr><td colspan="6">Chưa có tài khoản nào</td></tr>';
+  } else {
+    users.forEach((user, index) => {
+      const row = `
+        <tr>
+          <td>${user.id}</td>
+          <td>${user.username}</td>
+          <td>${user.email}</td>
+          <td>********</td> <!-- Hiển thị mật khẩu ẩn -->
+          <td>${user.role}</td>
+          <td>
+            <button class="btn btn-warning btn-sm" onclick="showEditUserModal(${index})">Sửa</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteUser(${index})">Xóa</button>
+          </td>
+        </tr>
+      `;
+      userTable.innerHTML += row;
+    });
+  }
+}
+
+// Hàm thêm tài khoản
+document.getElementById('addUserForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const username = document.getElementById('username').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value.trim();
+  const role = document.getElementById('role').value;
+
+  if (!username || !email || !password || !role) {
+    alert('Vui lòng nhập đầy đủ thông tin.');
+    return;
+  }
+
+  const users = getLocalStorage('account');
+  const newUser = {
+    id: randomString(),
+    username,
+    email,
+    password,
+    role,
+  };
+
+  users.push(newUser);
+  setLocalStorage('account', users);
+  loadUsers();
+  alert('Thêm tài khoản thành công!');
+  bootstrap.Modal.getInstance(document.getElementById('addUserModal')).hide();
+});
+
+// Hàm hiển thị modal chỉnh sửa tài khoản
+function showEditUserModal(index) {
+  const users = getLocalStorage('account');
+  const user = users[index];
+
+  document.getElementById('editUserId').value = index;
+  document.getElementById('editUsername').value = user.username;
+  document.getElementById('editEmail').value = user.email;
+  document.getElementById('editPassword').value = user.password;
+  document.getElementById('editRole').value = user.role;
+
+  const editUserModal = new bootstrap.Modal(document.getElementById('editUserModal'));
+  editUserModal.show();
+}
+
+// Hàm lưu thay đổi tài khoản
+document.getElementById('editUserForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+
+  const index = document.getElementById('editUserId').value;
+  const username = document.getElementById('editUsername').value.trim();
+  const email = document.getElementById('editEmail').value.trim();
+  const password = document.getElementById('editPassword').value.trim();
+  const role = document.getElementById('editRole').value;
+
+  if (!username || !email || !password || !role) {
+    alert('Vui lòng nhập đầy đủ thông tin.');
+    return;
+  }
+
+  const users = getLocalStorage('account');
+  users[index] = { ...users[index], username, email, password, role };
+  setLocalStorage('account', users);
+  loadUsers();
+  alert('Cập nhật tài khoản thành công!');
+  bootstrap.Modal.getInstance(document.getElementById('editUserModal')).hide();
+});
+
+// Hàm xóa tài khoản
+function deleteUser(index) {
+  if (confirm('Bạn có chắc chắn muốn xóa tài khoản này?')) {
+    const users = getLocalStorage('account');
+    users.splice(index, 1);
+    setLocalStorage('account', users);
+    loadUsers();
+    alert('Xóa tài khoản thành công!');
+  }
+}
+
+// Tải danh sách tài khoản khi trang được tải
+document.addEventListener('DOMContentLoaded', function () {
+  loadUsers();
+});
+// End Quản lý tài khoản
+
+document.addEventListener('DOMContentLoaded', function () {
+  loadOrders(); // Tải danh sách đơn hàng
+  loadUsers(); // Tải danh sách tài khoản
+  loadDashboardStats(); // Tải và hiển thị thống kê
+  displayData('dashboard', true); // Mặc định hiển thị Dashboard
+});

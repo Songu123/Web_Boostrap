@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Account - Polo Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        .account-user img {
+            border-radius: 50%;
+        }
+        .nav-link.active {
+            font-weight: bold;
+            color: #0d6efd !important;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+        }
+        footer a {
+            color: #ddd;
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">Polo Store</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#">Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Sản phẩm</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Giới thiệu</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Liên hệ</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="#">Tài khoản</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-4">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="bg-light p-3 mb-4 rounded">
+                <h1 class="text-uppercase mb-0">Tài khoản</h1>
+                <small class="text-uppercase text-muted">Trang tài khoản</small>
+            </div>
+
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="account-user d-flex align-items-center mb-3">
+                                <img
+                                    src="https://secure.gravatar.com/avatar/02669a4b75a13d174fa87c1823a7c523?s=70&d=mm&r=g"
+                                    alt="Avatar"
+                                    class="me-2"
+                                    width="70"
+                                    height="70"
+                                />
+                                <div>
+                                    <span class="fw-bold">sonphoto275</span>
+                                    <br />
+                                    <small class="text-muted">#90</small>
+                                </div>
+                            </div>
+                            <ul class="nav flex-column nav-pills" id="accountNav">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#" data-tab="dashboard">Trang tài khoản</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" data-tab="orders">Đơn hàng</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" data-tab="address">Địa chỉ</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" data-tab="account">Tài khoản</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" data-tab="wishlist">Yêu thích</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" data-tab="logout">Thoát</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="col-lg-9 col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- Dashboard Tab -->
+                            <div id="dashboard" class="tab-content active">
+                                <div class="alert alert-info text-center" role="alert">
+                                    Tài khoản của bạn với Polo Store đang sử dụng mật khẩu tạm thời. Vui lòng thay đổi mật khẩu trong phần "Tài khoản".
+                                </div>
+                                <p>Xin chào <strong>sonphoto275</strong> (không phải bạn? <a href="#" data-tab="logout">Đăng xuất</a>)</p>
+                                <p>Từ bảng điều khiển tài khoản, bạn có thể quản lý các thông tin sau:</p>
+                                <ul class="list-inline">
+                                    <li class="list-inline-item"><a href="#" data-tab="orders">Đơn hàng</a></li>
+                                    <li class="list-inline-item"><a href="#" data-tab="address">Địa chỉ</a></li>
+                                    <li class="list-inline-item"><a href="#" data-tab="account">Tài khoản</a></li>
+                                    <li class="list-inline-item"><a href="#" data-tab="wishlist">Yêu thích</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- Orders Tab -->
+                            <div id="orders" class="tab-content">
+                                <h5>Đơn hàng của bạn</h5>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã đơn</th>
+                                            <th>Ngày đặt</th>
+                                            <th>Tổng tiền</th>
+                                            <th>Trạng thái</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>#001</td>
+                                            <td>28/03/2025</td>
+                                            <td>500,000đ</td>
+                                            <td><span class="badge bg-success">Đã giao</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>#002</td>
+                                            <td>27/03/2025</td>
+                                            <td>750,000đ</td>
+                                            <td><span class="badge bg-warning">Đang xử lý</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Address Tab -->
+                            <div id="address" class="tab-content">
+                                <h5>Địa chỉ giao hàng</h5>
+                                <p><strong>Địa chỉ mặc định:</strong> 123 Đường ABC, Quận 1, TP. HCM</p>
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editAddressModal">Chỉnh sửa địa chỉ</button>
+                            </div>
+
+                            <!-- Account Tab -->
+                            <div id="account" class="tab-content">
+                                <h5>Thông tin tài khoản</h5>
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="username" class="form-label">Tên đăng nhập</label>
+                                        <input type="text" class="form-control" id="username" value="sonphoto275" readonly />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" value="sonphoto275@example.com" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">Mật khẩu mới</label>
+                                        <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu mới" />
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                                </form>
+                            </div>
+
+                            <!-- Wishlist Tab -->
+                            <div id="wishlist" class="tab-content">
+                                <h5>Sản phẩm yêu thích</h5>
+                                <ul class="list-group">
+                                    <li class="list-group-item">Áo Polo Xanh - 300,000đ</li>
+                                    <li class="list-group-item">Quần Kaki Đen - 450,000đ</li>
+                                </ul>
+                            </div>
+
+                            <!-- Logout Tab -->
+                            <div id="logout" class="tab-content">
+                                <h5>Đăng xuất</h5>
+                                <p>Bạn có chắc chắn muốn đăng xuất?</p>
+                                <button class="btn btn-danger" onclick="alert('Bạn đã đăng xuất!')">Xác nhận đăng xuất</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for Editing Address -->
+    <div class="modal fade" id="editAddressModal" tabindex="-1" aria-labelledby="editAddressModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editAddressModalLabel">Chỉnh sửa địa chỉ</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Địa chỉ</label>
+                            <input type="text" class="form-control" id="address" value="123 Đường ABC, Quận 1, TP. HCM" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-4">
+        <div class="container text-center">
+            <p class="mb-1">© 2025 Polo Store. All rights reserved.</p>
+            <p>
+                <a href="#">Chính sách bảo mật</a> | 
+                <a href="#">Điều khoản sử dụng</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // JavaScript để chuyển đổi tab
+        document.querySelectorAll('#accountNav .nav-link').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const tabId = this.getAttribute('data-tab');
+
+                // Ẩn tất cả các tab
+                document.querySelectorAll('.tab-content').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+
+                // Hiển thị tab được chọn
+                document.getElementById(tabId).classList.add('active');
+
+                // Cập nhật trạng thái active cho nav-link
+                document.querySelectorAll('#accountNav .nav-link').forEach(nav => {
+                    nav.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -11,12 +11,53 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/styles.css">
     <link rel="stylesheet" href="./assets/css/checkout.css">
+    <style>
+        .checkout .row {
+            margin: 0 auto;
+        }
+        .checkout .col-md-7,
+        .checkout .col-md-5 {
+            padding: 20px;
+        }
+        .checkout .form-control,
+        .checkout textarea {
+            border-radius: 5px;
+        }
+        .order-summary {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        .order-summary table {
+            margin-bottom: 20px;
+        }
+        .order-summary .btn {
+            padding: 12px;
+        }
+        @media (max-width: 767px) {
+            .checkout .col-md-7,
+            .checkout .col-md-5 {
+                padding: 15px;
+            }
+            .checkout .breadcrumb {
+                font-size: 14px;
+            }
+        }
+        /* CSS cho validation */
+        .invalid-feedback {
+            display: none;
+        }
+        .was-validated .form-control:invalid ~ .invalid-feedback,
+        .was-validated .form-control:valid ~ .valid-feedback {
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
 
     <!-- Begin header -->
     <header>
+        <!-- Giữ nguyên header của bạn -->
         <nav class="navbar navbar-expand-lg bg-body-tertiary shadow">
             <div class="container-fluid">
                 <div class="d-flex d-lg-none justify-content-between">
@@ -135,28 +176,13 @@
                             </li>
                         </ul>
                     </div>
-                    <!-- <div class="offcanvas-body">
-                        <ul class="">
-                          <li><a class="" href="#">Action</a></li>
-                          <li><a class="" href="#">Another action</a></li>
-                          <li><a class="" href="#">Something else here</a></li>
-                        </ul>
-                    </div> -->
                 </div>
 
-                <!-- <div class="d-none d-md-block"></div> -->
                 <a class="navbar-brand d-none d-lg-block col-5 col-lg-2" href="./index.html">
                     <div class="px-4 text-center">
                         <img src="./assets/images/logo/logo-polostore-3-1080x782.png" class="w-50" alt="">
                     </div>
                 </a>
-
-                <!-- <a class="text-dark d-lg-none" href=""><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                        fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
-                        <path
-                            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2">
-                        </path>
-                    </svg></a> -->
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="col-xl-8 navbar-nav me-auto mb-2 mb-lg-0">
@@ -259,7 +285,6 @@
                                     <span class="visually-hidden">unread messages</span>
                                 </span>
                             </a>
-
                             <div
                                 class="menudrop-ticket position-absolute bg-body-tertiary rounded-3 shadow-lg border border-2 border-dark-subtle p-4">
                                 <div class="cart-list">
@@ -311,101 +336,111 @@
     <!-- Begin content -->
     <section class="checkout container" style="margin-top: 6rem;">
         <nav aria-label="breadcrumb" class="pt-4">
-          <ol class="breadcrumb breadcrumb-lg d-flex justify-content-center">
-            <li class="breadcrumb-item text-uppercase"><a href="./cart.html">Giỏ hàng</a></li>
-            <li class="breadcrumb-item text-uppercase active" aria-current="page">Chi tiết thanh toán</li>
-            <li class="breadcrumb-item text-uppercase"><a href="#">Đơn hàng hoàn tất</a></li>
-          </ol>
+            <ol class="breadcrumb breadcrumb-lg d-flex justify-content-center text-uppercase">
+                <li class="breadcrumb-item"><a href="./cart.html">Giỏ hàng</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Chi tiết thanh toán</li>
+                <li class="breadcrumb-item"><a href="#">Đơn hàng hoàn tất</a></li>
+            </ol>
         </nav>
-        <div class="row container">
-          <div class="col-md-7 px-0 py-4 border-top border-2">
-            <form class="needs-validation" novalidate>
-              <div class="form-group">
-                <h3 class="mb-4">Thanh toán và giao hàng</h3>
-                <div class="row">
-                  <div class="col-md-6 col-sm-12 mb-3">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Tên" required>
-                  </div>
-                  <div class="col-md-6 col-sm-12 mb-3">
-                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Số điện thoại" required>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6 col-sm-12 mb-3">
-                    <select class="form-control" id="city" name="city" required>
-                      <option value="">Tỉnh/Thành phố</option>
-                    </select>
-                  </div>
-                  <div class="col-md-6 col-sm-12 mb-3">
-                    <select class="form-control" id="district" name="district" required>
-                      <option value="">Quận/Huyện</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group mb-3">
-                  <select class="form-control" id="ward" name="ward" required>
-                    <option value="">Xã/Phường</option>
-                  </select>
-                </div>
-                <div class="form-group mb-3">
-                  <input type="text" class="form-control" id="address" name="address" placeholder="Địa chỉ" required>
-                </div>
-                <div class="form-group mb-3">
-                  <div class="form-check">
-                    <input class="form-check-input p-1" type="checkbox" id="create-account" name="create-account">
-                    <label class="form-check-label" for="create-account">Tạo tài khoản mới</label>
-                  </div>
-                </div>
-              </div>
-            </form>
-            <div class="mt-4">
-              <h3 class="mb-3">Thông tin bổ sung</h3>
-              <textarea class="w-100 border p-2" rows="2" cols="5" name="" placeholder="Ghi chú về đơn hàng, ví dụ: thời gian hay chỉ dẫn địa điểm giao hàng chi tiết hơn." id=""></textarea>
+        <div class="row">
+            <div class="col-md-7 border-top border-2">
+                <form class="needs-validation" novalidate id="checkoutForm">
+                    <div class="form-group">
+                        <h3 class="mb-4">Thanh toán và giao hàng</h3>
+                        <div class="row g-3">
+                            <div class="col-md-6 col-12">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Tên" required>
+                                <div class="invalid-feedback">Vui lòng nhập tên của bạn.</div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Số điện thoại" pattern="[0-9]{10}" required>
+                                <div class="invalid-feedback">Vui lòng nhập số điện thoại hợp lệ (10 chữ số).</div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <select class="form-control" id="city" name="city" required>
+                                    <option value="">Tỉnh/Thành phố</option>
+                                    <option value="hcm">TP. Hồ Chí Minh</option>
+                                    <option value="hn">Hà Nội</option>
+                                </select>
+                                <div class="invalid-feedback">Vui lòng chọn tỉnh/thành phố.</div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <select class="form-control" id="district" name="district" required>
+                                    <option value="">Quận/Huyện</option>
+                                    <option value="q1">Quận 1</option>
+                                    <option value="q2">Quận 2</option>
+                                </select>
+                                <div class="invalid-feedback">Vui lòng chọn quận/huyện.</div>
+                            </div>
+                            <div class="col-12">
+                                <select class="form-control" id="ward" name="ward" required>
+                                    <option value="">Xã/Phường</option>
+                                    <option value="p1">Phường 1</option>
+                                    <option value="p2">Phường 2</option>
+                                </select>
+                                <div class="invalid-feedback">Vui lòng chọn xã/phường.</div>
+                            </div>
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="address" name="address" placeholder="Địa chỉ" required>
+                                <div class="invalid-feedback">Vui lòng nhập địa chỉ giao hàng.</div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input p-1" type="checkbox" id="create-account" name="create-account">
+                                    <label class="form-check-label" for="create-account">Tạo tài khoản mới</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="mb-3">Thông tin bổ sung</h3>
+                        <textarea class="w-100 border p-2" rows="3" name="notes" placeholder="Ghi chú về đơn hàng, ví dụ: thời gian hay chỉ dẫn địa điểm giao hàng chi tiết hơn." id="notes"></textarea>
+                    </div>
+                </form>
             </div>
-          </div>
-          <div class="col-md-5 p-0 px-lg-4">
-            <div class="order-summary p-5 border border-black border-2">
-              <h3 class="mb-4">Đơn hàng của bạn</h3>
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>Sản phẩm</th>
-                    <th>Tạm tính</th>
-                  </tr>
-                </thead>
-                <tbody id="checkout_value">
-                  <tr>
-                    <td>
-                      <!-- <img src="image-url" alt="Áo polo nam Pack Trinity"> -->
-                      <span>Áo polo nam Pack Trinity</span>
-                      <span>× 3</span>
-                      <p class="mb-0">Màu sắc: Xanh đen</p>
-                      <p class="mb-0">Size: XL (75kg)</p>
-                    </td>
-                    <td>510.000 ₫</td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td>Tạm tính</td>
-                    <td>510.000 ₫</td>
-                  </tr>
-                  <tr>
-                    <td>Tổng</td>
-                    <td>510.000 ₫</td>
-                  </tr>
-                </tfoot>
-              </table>
-              <p class="mb-4">Thanh toán tiền mặt khi nhận hàng (COD)</p>
-              <button type="submit" class="btn btn-primary w-100 place-order text-uppercase fw-bold">Đặt hàng</button>
+            <div class="col-md-5">
+                <div class="order-summary">
+                    <h3 class="mb-4">Đơn hàng của bạn</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Sản phẩm</th>
+                                <th>Tạm tính</th>
+                            </tr>
+                        </thead>
+                        <tbody id="checkout_value">
+                            <tr>
+                                <td>
+                                    <span>Áo polo nam Pack Trinity</span>
+                                    <span>× 3</span>
+                                    <p class="mb-0">Màu sắc: Xanh đen</p>
+                                    <p class="mb-0">Size: XL (75kg)</p>
+                                </td>
+                                <td>510.000 ₫</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>Tạm tính</td>
+                                <td>510.000 ₫</td>
+                            </tr>
+                            <tr>
+                                <td>Tổng</td>
+                                <td>510.000 ₫</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <p class="mb-4">Thanh toán tiền mặt khi nhận hàng (COD)</p>
+                    <button type="submit" class="btn btn-primary w-100 place-order text-uppercase fw-bold" form="checkoutForm">Đặt hàng</button>
+                </div>
             </div>
-          </div>
         </div>
     </section>
     <!-- End content -->
 
     <!-- Begin footer -->
     <footer id="main_footer">
+        <!-- Giữ nguyên footer của bạn -->
         <div class="bg-main text-light row mt-4 p-5">
             <div class="col-xl-3">
                 <span class="fw-bold">POLO STORE</span>
@@ -468,12 +503,88 @@
     </footer>
     <!-- End footer -->
 
+    <script src="./assets/js/product_detail.js"></script>
     <script src="./assets/js/app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="./assets/js/checkout.js"></script>
+    <script>
+        (function () {
+    'use strict';
+    window.addEventListener('load', function () {
+        const form = document.getElementById('checkoutForm');
+        if (!form) {
+            console.error('Không tìm thấy form với ID "checkoutForm"');
+            return;
+        }
+
+        form.addEventListener('submit', async function (event) {
+            event.preventDefault(); // Ngăn submit mặc định trong mọi trường hợp
+
+            // Kiểm tra validation của form
+            if (!form.checkValidity()) {
+                event.stopPropagation();
+                form.classList.add('was-validated');
+                return;
+            }
+
+            // Thu thập dữ liệu từ form
+            const customerData = {
+                name: document.getElementById('name')?.value || '',
+                phone: document.getElementById('phone')?.value || '',
+                city: document.getElementById('city')?.value || '',
+                district: document.getElementById('district')?.value || '',
+                ward: document.getElementById('ward')?.value || '',
+                address: document.getElementById('address')?.value || '',
+                notes: document.getElementById('notes')?.value || '',
+                createAccount: document.getElementById('create-account')?.checked || false,
+                orderDetails: [
+                    {
+                        productId: '123',
+                        productName: 'Áo thun nam',
+                        quantity: 2,
+                        price: 200000
+                    },
+                    {
+                        productId: '456',
+                        productName: 'Quần short kaki nam',
+                        quantity: 1,
+                        price: 300000
+                    }
+                ]
+            };
+
+            try {
+                // Gửi dữ liệu đến API backend
+                const response = await axios.post('http://localhost:5000/api/orders', customerData);
+                console.log('Phản hồi từ API:', response.data);
+
+                // Backend trả về status 201 (Created) thay vì 200, nên kiểm tra cả hai
+                if (response.status === 201 || response.status === 200) {
+                    const orderId = response.data.orderId;
+                    if (orderId) {
+                        window.location.href = `./order-complete.html?orderId=${orderId}`;
+                    } else {
+                        alert('Không nhận được mã đơn hàng từ server. Vui lòng thử lại.');
+                    }
+                }
+            } catch (error) {
+                console.error('Lỗi khi gửi đơn hàng:', error.response?.data || error.message);
+                if (error.response) {
+                    // Xử lý lỗi cụ thể từ backend
+                    alert(`Lỗi: ${error.response.data.message || 'Đã xảy ra lỗi khi đặt hàng'}`);
+                } else {
+                    alert('Không thể kết nối đến server. Vui lòng kiểm tra kết nối mạng.');
+                }
+            }
+
+            form.classList.add('was-validated');
+        });
+    });
+})();
+    </script>
 </body>
 
 </html>
