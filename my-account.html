@@ -14,6 +14,19 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="./slick-1.8.1/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="./slick-1.8.1/slick/slick-theme.css" />
+    <style>
+        /* Thêm CSS cho tab nội dung */
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .content-account-menu .nav-link.active {
+            font-weight: bold;
+            color: #0d6efd !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -138,28 +151,13 @@
                             </li>
                         </ul>
                     </div>
-                    <!-- <div class="offcanvas-body">
-                        <ul class="">
-                          <li><a class="" href="#">Action</a></li>
-                          <li><a class="" href="#">Another action</a></li>
-                          <li><a class="" href="#">Something else here</a></li>
-                        </ul>
-                    </div> -->
                 </div>
 
-                <!-- <div class="d-none d-md-block"></div> -->
                 <a class="navbar-brand d-none d-lg-block col-5 col-lg-2" href="./index.html">
                     <div class="px-4 text-center">
                         <img src="./assets/images/logo/logo-polostore-3-1080x782.png" class="w-50" alt="">
                     </div>
                 </a>
-
-                <!-- <a class="text-dark d-lg-none" href=""><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                        fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
-                        <path
-                            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2">
-                        </path>
-                    </svg></a> -->
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="col-xl-8 navbar-nav me-auto mb-2 mb-lg-0">
@@ -262,7 +260,6 @@
                                     <span class="visually-hidden">unread messages</span>
                                 </span>
                             </a>
-
                             <div
                                 class="menudrop-ticket position-absolute bg-body-tertiary rounded-3 shadow-lg border border-2 border-dark-subtle p-4">
                                 <div class="cart-list">
@@ -320,57 +317,156 @@
             </div>
         </div>
         <div class="row container content-account py-3 px-0 text-color">
-            <div class="col-3 content-account-menu border-end">
-                <div class="">
+            <div class="col-12 col-md-3 content-account-menu border-end">
+                <div class="d-flex align-items-center mb-3">
                     <span class="me-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"></path>
                             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"></path>
-                          </svg>                    </span>
+                        </svg>
+                    </span>
                     <span>vans72092 <em>#81</em></span>
                 </div>
-                <ul class="list-unstyled mt-3">
+                <ul class="list-unstyled mt-3" id="accountNav">
                     <li class="position-relative border-bottom border-1 py-2">
-                        <a href="" class="text-uppercase text-color fw-bold text-decoration-none">Trang tài khoản</a>
+                        <a href="#" class="nav-link text-uppercase text-color fw-bold text-decoration-none active" data-tab="dashboard">Trang tài khoản</a>
                     </li>
                     <li class="position-relative border-bottom border-1 py-2">
-                        <a href="" class="text-uppercase text-color fw-bold text-decoration-none">Đơn hàng</a>
+                        <a href="#" class="nav-link text-uppercase text-color fw-bold text-decoration-none" data-tab="orders">Đơn hàng</a>
                     </li>
                     <li class="position-relative border-bottom border-1 py-2">
-                        <a href="" class="text-uppercase text-color fw-bold text-decoration-none">Địa chỉ</a>
+                        <a href="#" class="nav-link text-uppercase text-color fw-bold text-decoration-none" data-tab="address">Địa chỉ</a>
                     </li>
                     <li class="position-relative border-bottom border-1 py-2">
-                        <a href="" class="text-uppercase text-color fw-bold text-decoration-none">Tài khoản</a>
+                        <a href="#" class="nav-link text-uppercase text-color fw-bold text-decoration-none" data-tab="account">Tài khoản</a>
                     </li>
                     <li class="position-relative border-bottom border-1 py-2">
-                        <a href="" class="text-uppercase text-color fw-bold text-decoration-none">Yêu thích</a>
+                        <a href="#" class="nav-link text-uppercase text-color fw-bold text-decoration-none" data-tab="wishlist">Yêu thích</a>
                     </li>
                     <li class="position-relative border-bottom border-1 py-2">
-                        <a href="" class="text-uppercase text-color fw-bold text-decoration-none">Thoát</a>
+                        <a href="#" class="nav-link text-uppercase text-color fw-bold text-decoration-none" data-tab="logout">Thoát</a>
                     </li>
                 </ul>
             </div>
-            <div class="col-9 content-account-main">
-                <p>Xin chào vans72092 (không phải tài khoản vans72092? Hãy thoát ra và đăng nhập vào tài khoản của bạn)</p>
-                <p>Từ trang quản lý tài khoản bạn có thể xem đơn hàng mới, quản lý địa chỉ giao hàng và thanh toán, and sửa mật khẩu và thông tin tài khoản.</p>
-                <ul class="row list-unstyled">
-                    <li class="col-4"> 
-                        <a href="" class="btn btn-light border me-2 mb-4 w-100 py-4 fs-4 text-decoration-none text-dark">Đơn hàng</a>
-                    </li>
-                    <li class="col-4"> 
-                        <a href="" class="btn btn-light border me-2 w-100 py-4 fs-4 text-decoration-none text-dark">Địa chỉ</a>
-                    </li>
-                    <li class="col-4"> 
-                        <a href="" class="btn btn-light border me-2 w-100 py-4 fs-4 text-decoration-none text-dark">Tài khoản</a>
-                    </li>
-                    <li class="col-4"> 
-                        <a href="" class="btn btn-light border me-2 w-100 py-4 fs-4 text-decoration-none text-dark">Yêu thích</a>
-                    </li>
-                </ul>
+            <div class="col-12 col-md-9 content-account-main">
+                <!-- Dashboard Tab -->
+                <div id="dashboard"  class="tab-content active ">
+                    <p>Xin chào <strong>vans72092</strong> (không phải tài khoản vans72092? <a href="#" data-tab="logout">Thoát ra</a>)</p>
+                    <p>Từ trang quản lý tài khoản bạn có thể xem đơn hàng mới, quản lý địa chỉ giao hàng và thanh toán, và sửa mật khẩu và thông tin tài khoản.</p>
+                    <ul class="row list-unstyled">
+                        <li class="col-6 col-md-4">
+                            <a href="#" class="btn btn-light border me-2 mb-4 w-100 py-4 fs-4 text-decoration-none text-dark" data-tab="orders">Đơn hàng</a>
+                        </li>
+                        <li class="col-6 col-md-4">
+                            <a href="#" class="btn btn-light border me-2 w-100 py-4 fs-4 text-decoration-none text-dark" data-tab="address">Địa chỉ</a>
+                        </li>
+                        <li class="col-6 col-md-4">
+                            <a href="#" class="btn btn-light border me-2 w-100 py-4 fs-4 text-decoration-none text-dark" data-tab="account">Tài khoản</a>
+                        </li>
+                        <li class="col-6 col-md-4">
+                            <a href="#" class="btn btn-light border me-2 w-100 py-4 fs-4 text-decoration-none text-dark" data-tab="wishlist">Yêu thích</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Orders Tab -->
+                <div id="orders" class="tab-content">
+                    <h5>Đơn hàng của bạn</h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Mã đơn</th>
+                                    <th>Ngày đặt</th>
+                                    <th>Tổng tiền</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#001</td>
+                                    <td>28/03/2025</td>
+                                    <td>500,000đ</td>
+                                    <td><span class="badge bg-success">Đã giao</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#002</td>
+                                    <td>27/03/2025</td>
+                                    <td>750,000đ</td>
+                                    <td><span class="badge bg-warning">Đang xử lý</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Address Tab -->
+                <div id="address" class="tab-content">
+                    <h5>Địa chỉ giao hàng</h5>
+                    <p><strong>Địa chỉ mặc định:</strong> 123 Đường ABC, Quận 1, TP. HCM</p>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editAddressModal">Chỉnh sửa địa chỉ</button>
+                </div>
+
+                <!-- Account Tab -->
+                <div id="account" class="tab-content">
+                    <h5>Thông tin tài khoản</h5>
+                    <form>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Tên đăng nhập</label>
+                            <input type="text" class="form-control" id="username" value="vans72092" readonly />
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" value="vans72092@example.com" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Mật khẩu mới</label>
+                            <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu mới" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                    </form>
+                </div>
+
+                <!-- Wishlist Tab -->
+                <div id="wishlist" class="tab-content">
+                    <h5>Sản phẩm yêu thích</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item">Áo Polo Xanh - 300,000đ</li>
+                        <li class="list-group-item">Quần Kaki Đen - 450,000đ</li>
+                    </ul>
+                </div>
+
+                <!-- Logout Tab -->
+                <div id="logout" class="tab-content">
+                    <h5>Đăng xuất</h5>
+                    <p>Bạn có chắc chắn muốn đăng xuất?</p>
+                    <button class="btn btn-danger" onclick="logout()">Xác nhận đăng xuất</button>
+                </div>
             </div>
         </div>
     </section>
     <!-- End content -->
+
+    <!-- Modal for Editing Address -->
+    <div class="modal fade" id="editAddressModal" tabindex="-1" aria-labelledby="editAddressModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editAddressModalLabel">Chỉnh sửa địa chỉ</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Địa chỉ</label>
+                            <input type="text" class="form-control" id="address" value="123 Đường ABC, Quận 1, TP. HCM" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Begin footer -->
     <footer id="main_footer">
@@ -436,6 +532,7 @@
     </footer>
     <!-- End footer -->
 
+    <script src="./assets/js/my-account.js"></script>
     <script src="./assets/js/product_detail.js"></script>
     <script src="./assets/js/app.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -457,23 +554,23 @@
         });
         $(document).ready(function () {
             $('.slider-category').slick({
-                slidesToShow: 4, // Hiển thị 4 ảnh cùng lúc
+                slidesToShow: 4,
                 slidesToScroll: 1,
                 arrows: true,
                 responsive: [
                     {
-                        breakpoint: 768, // Khi màn hình nhỏ hơn 768px
+                        breakpoint: 768,
                         settings: {
-                            slidesToShow: 2, // Hiển thị 2 ảnh cùng lúc
+                            slidesToShow: 2,
                             slidesToScroll: 1,
                             infinite: true,
                             dots: true
                         }
                     },
                     {
-                        breakpoint: 480, // Khi màn hình nhỏ hơn 480px
+                        breakpoint: 480,
                         settings: {
-                            slidesToShow: 1, // Hiển thị 1 ảnh
+                            slidesToShow: 1,
                             slidesToScroll: 1
                         }
                     }
@@ -481,43 +578,77 @@
             });
 
             $('.slider-product').slick({
-                slidesToShow: 4, // Hiển thị 4 ảnh cùng lúc
+                slidesToShow: 4,
                 slidesToScroll: 1,
                 arrows: true,
                 responsive: [
                     {
-                        breakpoint: 768, // Khi màn hình nhỏ hơn 768px
+                        breakpoint: 768,
                         settings: {
-                            slidesToShow: 2, // Hiển thị 2 ảnh cùng lúc
+                            slidesToShow: 2,
                             slidesToScroll: 1,
                             infinite: true,
                         }
                     },
                     {
-                        breakpoint: 480, // Khi màn hình nhỏ hơn 480px
+                        breakpoint: 480,
                         settings: {
-                            slidesToShow: 1, // Hiển thị 1 ảnh
+                            slidesToShow: 1,
                             slidesToScroll: 1
                         }
                     }
                 ]
             });
         });
-
-
     </script>
     <script type="text/javascript">
         $('.your-class').slick({
             prevArrow: '<button type="button" class="slick-prev"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/></svg></button>',
             nextArrow: '<button type="button" class="slick-next"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right-circle-fill" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 0 16 0A8 8 0 0 0 0 8m5.904 2.803a.5.5 0 1 1-.707-.707L9.293 6H6.525a.5.5 0 1 1 0-1H10.5a.5.5 0 0 1 .5.5v3.975a.5.5 0 0 1-1 0V6.707z"/></svg></button>',
-            // Add other settings here
         });
     </script>
-
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script>
+        // JavaScript để chuyển đổi tab
+    function switchTab(tabId) {
+        // Ẩn tất cả các tab
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            tab.classList.remove('active');
+        });
+
+        // Hiển thị tab được chọn
+        document.getElementById(tabId).classList.add('active');
+
+        // Cập nhật trạng thái active cho nav-link trong sidebar
+        document.querySelectorAll('#accountNav .nav-link').forEach(nav => {
+            nav.classList.remove('active');
+            if (nav.getAttribute('data-tab') === tabId) {
+                nav.classList.add('active');
+            }
+        });
+    }
+
+    // Xử lý nhấp vào sidebar
+    document.querySelectorAll('#accountNav .nav-link').forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const tabId = this.getAttribute('data-tab');
+            switchTab(tabId);
+        });
+    });
+
+    // Xử lý nhấp vào các nút trong dashboard
+    document.querySelectorAll('#dashboard .btn[data-tab]').forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+            const tabId = this.getAttribute('data-tab');
+            switchTab(tabId);
+        });
+    });
+    </script>
 </body>
 
 </html>
