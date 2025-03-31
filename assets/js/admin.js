@@ -350,33 +350,83 @@ const searchProducts = (e) => {
   }
 };
 
+// Hàm hiển thị danh sách đơn hàng
+fetch('http://localhost:3000/api/orders')
+  .then((response) => response.json())
+  .then((data) => {
+    document.getElementById('total-orders').textContent = data.totalOrders;
+    document.getElementById('json-output').textContent = JSON.stringify(data.orders, null, 2);
+  })
+  .catch((error) => console.error('Lỗi:', error));
+
 // Hàm tải và hiển thị thống kê trên Dashboard
 function loadDashboardStats() {
   // Lấy danh sách sản phẩm từ localStorage
   const products = getLocalStorage('products') || []; // Nếu không có sản phẩm, trả về mảng rỗng
-  const orders = getLocalStorage('orders') || []; // Nếu không có đơn hàng, trả về mảng rỗng
+  // const orders = getLocalStorage('orders') || []; // Nếu không có đơn hàng, trả về mảng rỗng
   const users = getLocalStorage('account') || []; // Nếu không có người dùng, trả về mảng rỗng
 
   // Tính toán các thống kê
   const totalProducts = products.length; // Tổng số sản phẩm
-  const totalOrders = orders.length; // Tổng số đơn hàng
+  // const totalOrders = orders.length; // Tổng số đơn hàng
   const totalUsers = users.length; // Giả lập số lượng người dùng
   const totalRevenue = orders.reduce((sum, order) => sum + (order.total || 0), 0).toLocaleString(); // Tổng doanh thu từ đơn hàng
 
   // Hiển thị các giá trị thống kê lên giao diện
   document.getElementById('totalProducts').innerText = totalProducts;
-  document.getElementById('totalOrders').innerText = totalOrders;
+
+  // Hiển thị các giá trị thống kê lên giao diện
+  document.getElementById('totalProducts').innerText = totalProducts;
+
+  fetch('http://localhost:3000/api/orders')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Kiểm tra dữ liệu trả về từ API
+        if (data && data.totalOrders !== undefined && data.totalRevenue !== undefined) {
+            document.getElementById('totalOrders').textContent = data.totalOrders;
+            document.getElementById('totalRevenue').textContent = `${data.totalRevenue.toLocaleString()} đ`;
+        } else {
+            console.warn('Dữ liệu trả về từ API không hợp lệ:', data);
+            document.getElementById('totalOrders').textContent = '0';
+            document.getElementById('totalRevenue').textContent = '0 đ';
+        }
+    })
+    .catch(error => {
+        console.error('Lỗi khi lấy dữ liệu từ API:', error);
+        document.getElementById('totalOrders').textContent = 'Lỗi';
+        document.getElementById('totalRevenue').textContent = 'Lỗi';
+    });
+
   document.getElementById('totalUsers').innerText = totalUsers;
-  document.getElementById('totalRevenue').innerText = `${totalRevenue} đ`;
+  // document.getElementById('totalRevenue').innerText = `${totalRevenue} đ`;
 }
 
 // Begin Quản lý đơn hàng
 // Giả lập danh sách đơn hàng (có thể thay bằng API từ backend)
-let orders = [
-  { id: 101, customer: 'Nguyễn Văn A', total: 500000, date: '2025-03-25', status: 'Chờ Xác Nhận' },
-  { id: 102, customer: 'Trần Thị B', total: 750000, date: '2025-03-24', status: 'Đã Giao' },
-  { id: 103, customer: 'Lê Văn C', total: 1200000, date: '2025-03-23', status: 'Đã Hủy' },
-];
+let orders = []
+// Gọi API để lấy danh sách đơn hàng
+fetch('http://localhost:3000/api/orders')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Gán dữ liệu đơn hàng vào biến orders
+        orders = data.orders;
+
+        // Hiển thị danh sách đơn hàng lên bảng
+        loadOrders();
+    })
+    .catch(error => {
+        console.error('Lỗi khi lấy danh sách đơn hàng:', error);
+    });
 
 // Hàm tải danh sách đơn hàng lên bảng
 function loadOrders() {
@@ -386,10 +436,10 @@ function loadOrders() {
   orders.forEach((order, index) => {
     let row = `
         <tr>
-          <td>${order.id}</td>
-          <td>${order.customer}</td>
-          <td>${order.total.toLocaleString()} đ</td>
-          <td>${order.date}</td>
+          <td>${order._id}</td>
+          <td>${order.name}</td>
+          <td>${order.orderDetails.reduce((sum, item) => sum + item.price * item.quantity, 0).toLocaleString()} đ</td>
+          <td>${new Date(order.createdAt).toLocaleString()}</td>
           <td><span class="badge bg-${getStatusColor(order.status)}">${order.status}</span></td>
           <td>
             ${
@@ -432,12 +482,47 @@ function cancelOrder(index) {
 }
 
 // Xem chi tiết đơn hàng
+// function viewOrder(index) {
+//   alert(
+//     `Chi tiết đơn hàng ID: ${orders[index].id}\nKhách hàng: ${orders[index].customer}\nTổng tiền: ${orders[
+//       index
+//     ].total.toLocaleString()} đ`
+//   );
+// }
+
 function viewOrder(index) {
-  alert(
-    `Chi tiết đơn hàng ID: ${orders[index].id}\nKhách hàng: ${orders[index].customer}\nTổng tiền: ${orders[
-      index
-    ].total.toLocaleString()} đ`
-  );
+  const order = orders[index];
+
+  // Gán dữ liệu vào các phần tử trong modal
+  document.getElementById('orderId').textContent = order._id;
+  document.getElementById('orderCustomer').textContent = order.name;
+  document.getElementById('orderPhone').textContent = order.phone;
+  document.getElementById('orderAddress').textContent = `${order.address}, ${order.ward}, ${order.district}, ${order.city}`;
+  document.getElementById('orderDate').textContent = new Date(order.createdAt).toLocaleString();
+  document.getElementById('orderTotal').textContent = order.orderDetails
+    .reduce((sum, item) => sum + item.price * item.quantity, 0)
+    .toLocaleString();
+
+  // Hiển thị danh sách sản phẩm trong bảng
+  const productTableBody = document.getElementById('orderProducts');
+  productTableBody.innerHTML = ''; // Xóa nội dung cũ
+
+  order.orderDetails.forEach((item, idx) => {
+    const row = `
+      <tr>
+        <td>${idx + 1}</td>
+        <td>${item.productName}</td>
+        <td>${item.quantity}</td>
+        <td>${item.price.toLocaleString()} đ</td>
+        <td>${(item.price * item.quantity).toLocaleString()} đ</td>
+      </tr>
+    `;
+    productTableBody.innerHTML += row;
+  });
+
+  // Hiển thị modal
+  const orderModal = new bootstrap.Modal(document.getElementById('orderModal'));
+  orderModal.show();
 }
 
 // document.addEventListener('DOMContentLoaded', function () {

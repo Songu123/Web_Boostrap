@@ -296,12 +296,75 @@
               </div>
             </div>
           </div>
+
+          <!-- Modal chi tiết đơn hàng-->
+          <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="orderModalLabel">Chi tiết đơn hàng</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>
+                    <strong>ID:</strong>
+                    <span id="orderId"></span>
+                  </p>
+                  <p>
+                    <strong>Khách hàng:</strong>
+                    <span id="orderCustomer"></span>
+                  </p>
+                  <p>
+                    <strong>Số điện thoại:</strong>
+                    <span id="orderPhone"></span>
+                  </p>
+                  <p>
+                    <strong>Địa chỉ:</strong>
+                    <span id="orderAddress"></span>
+                  </p>
+                  <p>
+                    <strong>Ngày tạo:</strong>
+                    <span id="orderDate"></span>
+                  </p>
+                  <h5>Danh sách sản phẩm:</h5>
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Giá</th>
+                        <th>Tổng</th>
+                      </tr>
+                    </thead>
+                    <tbody id="orderProducts">
+                      <!-- Nội dung sẽ được thêm động bằng JavaScript -->
+                    </tbody>
+                  </table>
+                  <p>
+                    <strong>Tổng tiền:</strong>
+                    <span id="orderTotal"></span>
+                    đ
+                  </p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Modal Thêm Sản Phẩm -->
-    <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="addProductModal"
+      tabindex="-1"
+      aria-labelledby="addProductModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">

@@ -222,6 +222,20 @@ function alertUpdateCart() {
   toast.show();
 }
 
+// Hàm kiểm tra đăng nhập trước khi thanh toán
+function checkLoginBeforeCheckout() {
+  const currentUser = JSON.parse(localStorage.getItem('currentUser')); // Lấy thông tin người dùng từ localStorage
+
+  if (currentUser) {
+      // Người dùng đã đăng nhập, chuyển đến trang thanh toán
+      window.location.href = './checkout.html';
+  } else {
+      // Người dùng chưa đăng nhập, chuyển đến trang đăng nhập
+      alert('Bạn cần đăng nhập để tiếp tục thanh toán.');
+      window.location.href = './login.html';
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   // Render giá trị vào bảng giỏ hàng
   displayCart();

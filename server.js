@@ -18,30 +18,83 @@ mongoose.connect('mongodb://localhost:27017/polostore', {
 const customerSchema = new mongoose.Schema({
     name: { type: String, required: true },
     phone: { type: String, required: true },
+    city: { type: String, required: true },
+    district: { type: String, required: true },
+    ward: { type: String, required: true },
+    address: { type: String, required: true },
+    notes: { type: String },
+    createAccount: { type: Boolean, default: false },
     orderDetails: [{
-        productName: String,
-        quantity: Number,
-        price: Number
+        productId: { type: String, required: true },
+        productName: { type: String, required: true },
+        quantity: { type: Number, required: true },
+        price: { type: Number, required: true }
     }],
     createdAt: { type: Date, default: Date.now }
 });
+
 const Customer = mongoose.model('Customer', customerSchema);
 
 // API POST
-app.post('/api/orders', async (req, res) => {
+app.get('/api/orders', async (req, res) => {
     try {
-        const customer = new Customer(req.body);
-        const savedOrder = await customer.save();
-        res.status(201).json({ 
-            message: 'Đặt hàng thành công!', 
-            orderId: savedOrder._id 
+        // Lấy danh sách đơn hàng
+        const orders = await Customer.find().sort({ createdAt: -1 });
+
+        // Đếm tổng số đơn hàng
+        const totalOrders = await Customer.countDocuments();
+
+        // Tính tổng doanh thu
+        const totalRevenue = orders.reduce((sum, order) => {
+            const orderTotal = order.orderDetails.reduce((orderSum, item) => orderSum + item.price * item.quantity, 0);
+            return sum + orderTotal;
+        }, 0);
+
+        // Trả về dữ liệu JSON
+        res.status(200).json({
+            totalOrders: totalOrders,
+            totalRevenue: totalRevenue,
+            orders: orders
         });
     } catch (error) {
-        console.error('Lỗi:', error);
-        res.status(500).json({ message: 'Lỗi server' });
+        console.error('Lỗi khi lấy danh sách đơn hàng:', error.message);
+
+        // Trả về lỗi chi tiết hơn
+        res.status(500).json({ 
+            message: 'Lỗi server khi lấy danh sách đơn hàng', 
+            error: error.message 
+        });
     }
 });
 
+// API GET all orders
+
+app.get('/api/orders', async (req, res) => {
+    try {
+        // Lấy danh sách đơn hàng
+        const orders = await Customer.find().sort({ createdAt: -1 });
+
+        // Đếm tổng số đơn hàng
+        const totalOrders = await Customer.countDocuments();
+
+        // Log để kiểm tra giá trị
+        console.log('Tổng số đơn hàng:', totalOrders);
+
+        // Trả về dữ liệu JSON
+        res.status(200).json({
+            totalOrders: totalOrders,
+            orders: orders
+        });
+    } catch (error) {
+        console.error('Lỗi khi lấy danh sách đơn hàng:', error.message);
+
+        // Trả về lỗi chi tiết hơn
+        res.status(500).json({ 
+            message: 'Lỗi server khi lấy danh sách đơn hàng', 
+            error: error.message 
+        });
+    }
+});
 // API GET
 app.get('/api/orders/:orderId', async (req, res) => {
     try {
@@ -53,5 +106,7 @@ app.get('/api/orders/:orderId', async (req, res) => {
     }
 });
 
-const PORT = 5000;
+
+
+const PORT = 3000;
 app.listen(PORT, () => console.log(`Server chạy tại http://localhost:${PORT}`));
