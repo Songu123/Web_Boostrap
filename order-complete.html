@@ -629,87 +629,89 @@
     <script src="./assets/js/checkout.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
-    // Lấy orderId từ URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const orderId = urlParams.get('orderId');
-
-    // Kiểm tra orderId
-    if (!orderId) {
-        alert('Không tìm thấy mã đơn hàng trong URL.');
-        window.location.href = './'; // Chuyển hướng về trang chủ nếu không có orderId
-        return;
-    }
-
-    try {
-        // Gọi API để lấy thông tin đơn hàng
-        const response = await axios.get(`http://localhost:5000/api/orders/${orderId}`);
-        const order = response.data;
-
-        // Kiểm tra dữ liệu trả về
-        if (!order || !order.orderDetails) {
-            throw new Error('Dữ liệu đơn hàng không hợp lệ');
-        }
-
-        console.log('Thông tin đơn hàng:', order);
-
-        // Cập nhật thông tin đơn hàng
-        const orderIdElement = document.querySelector('#order-id');
-        const orderDateElement = document.querySelector('#order-date');
-        const orderTotalElement = document.querySelector('#order-total');
-        const orderDetailsList = document.querySelector('#order-details');
-
-        // Kiểm tra sự tồn tại của các phần tử DOM
-        if (!orderIdElement || !orderDateElement || !orderTotalElement || !orderDetailsList) {
-            throw new Error('Không tìm thấy các phần tử HTML cần thiết');
-        }
-
-        orderIdElement.textContent = order._id;
-        orderDateElement.textContent = new Date(order.createdAt).toLocaleString('vi-VN', {
-            dateStyle: 'medium',
-            timeStyle: 'short'
-        });
-        const total = order.orderDetails.reduce((sum, item) => sum + item.price * item.quantity, 0);
-        orderTotalElement.textContent = `${total.toLocaleString('vi-VN')} ₫`;
-
-        // Xóa nội dung cũ và hiển thị chi tiết sản phẩm
-        orderDetailsList.innerHTML = '';
-        order.orderDetails.forEach(item => {
-            const li = document.createElement('li');
-            li.className = 'order-item'; // Thêm class để dễ style
-            li.innerHTML = `
-                <div class="product-info">
-                    <div class="product-name">${item.productName} × ${item.quantity}</div>
-                    <div class="product-meta">
-                        <strong>Giá:</strong> ${item.price.toLocaleString('vi-VN')} ₫
-                    </div>
-                </div>
-                <div class="product-total">${(item.price * item.quantity).toLocaleString('vi-VN')} ₫</div>
-            `;
-            orderDetailsList.appendChild(li);
-        });
-
-    } catch (error) {
-        console.error('Lỗi khi tải thông tin đơn hàng:', error);
-
-        // Xử lý lỗi chi tiết hơn dựa trên response từ server
-        if (error.response) {
-            if (error.response.status === 404) {
-                alert('Đơn hàng không tồn tại. Vui lòng kiểm tra lại mã đơn hàng.');
-            } else if (error.response.status === 400) {
-                alert('Mã đơn hàng không hợp lệ.');
-            } else {
-                alert(`Lỗi server: ${error.response.data.message || 'Không thể tải thông tin đơn hàng.'}`);
+            // Lấy orderId từ URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('orderId');
+    
+            // Kiểm tra orderId
+            if (!orderId) {
+                alert('Không tìm thấy mã đơn hàng trong URL.');
+                window.location.href = './'; // Chuyển hướng về trang chủ nếu không có orderId
+                return;
             }
-        } else if (error.request) {
-            alert('Không thể kết nối đến server. Vui lòng kiểm tra kết nối mạng.');
-        } else {
-            alert('Đã xảy ra lỗi không xác định. Vui lòng thử lại sau.');
-        }
-
-        // Chuyển hướng về trang chủ hoặc trang checkout nếu cần
-        // window.location.href = './';
-    }
-});
+    
+            try {
+                // Gọi API để lấy thông tin đơn hàng
+                const response = await axios.get(`http://localhost:3000/api/orders/${orderId}`);
+                const order = response.data;
+    
+                // Kiểm tra dữ liệu trả về
+                if (!order || !order.orderDetails) {
+                    throw new Error('Dữ liệu đơn hàng không hợp lệ');
+                }
+    
+                console.log('Thông tin đơn hàng:', order);
+    
+                // Cập nhật thông tin đơn hàng
+                const orderIdElement = document.querySelector('.woocommerce-order-overview__order strong');
+                const orderDateElement = document.querySelector('.woocommerce-order-overview__date strong');
+                const orderTotalElement = document.querySelector('.woocommerce-order-overview__total strong');
+                const orderDetailsList = document.querySelector('.order-details-list');
+    
+                // Kiểm tra sự tồn tại của các phần tử DOM
+                if (!orderIdElement || !orderDateElement || !orderTotalElement || !orderDetailsList) {
+                    throw new Error('Không tìm thấy các phần tử HTML cần thiết');
+                }
+    
+                // Hiển thị thông tin đơn hàng
+                orderIdElement.textContent = order._id;
+                orderDateElement.textContent = new Date(order.createdAt).toLocaleString('vi-VN', {
+                    dateStyle: 'medium',
+                    timeStyle: 'short'
+                });
+                const total = order.orderDetails.reduce((sum, item) => sum + item.price * item.quantity, 0);
+                orderTotalElement.textContent = `${total.toLocaleString('vi-VN')} ₫`;
+    
+                // Xóa nội dung cũ và hiển thị chi tiết sản phẩm
+                orderDetailsList.innerHTML = '';
+                order.orderDetails.forEach(item => {
+                    const li = document.createElement('li');
+                    li.className = 'order-item'; // Thêm class để dễ style
+                    li.innerHTML = `
+                        <div class="product-info">
+                            <div class="product-name">${item.productName} × ${item.quantity}</div>
+                            <div class="product-meta">
+                                <strong>Giá:</strong> ${item.price.toLocaleString('vi-VN')} ₫
+                            </div>
+                        </div>
+                        <div class="product-total">${(item.price * item.quantity).toLocaleString('vi-VN')} ₫</div>
+                    `;
+                    orderDetailsList.appendChild(li);
+                });
+                // localStorage.removeItem('carts');
+                console.log('Dữ liệu giỏ hàng đã được xóa khỏi localStorage.');
+            } catch (error) {
+                console.error('Lỗi khi tải thông tin đơn hàng:', error);
+    
+                // Xử lý lỗi chi tiết hơn dựa trên response từ server
+                if (error.response) {
+                    if (error.response.status === 404) {
+                        alert('Đơn hàng không tồn tại. Vui lòng kiểm tra lại mã đơn hàng.');
+                    } else if (error.response.status === 400) {
+                        alert('Mã đơn hàng không hợp lệ.');
+                    } else {
+                        alert(`Lỗi server: ${error.response.data.message || 'Không thể tải thông tin đơn hàng.'}`);
+                    }
+                } else if (error.request) {
+                    alert('Không thể kết nối đến server. Vui lòng kiểm tra kết nối mạng.');
+                } else {
+                    alert('Đã xảy ra lỗi không xác định. Vui lòng thử lại sau.');
+                }
+    
+                // Chuyển hướng về trang chủ hoặc trang checkout nếu cần
+                window.location.href = './';
+            }
+        });
     </script>
 </body>
 

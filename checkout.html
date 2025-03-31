@@ -511,60 +511,76 @@
         crossorigin="anonymous"></script>
     <script src="./assets/js/checkout.js"></script>
     <script>
-        (function () {
-    'use strict';
-    window.addEventListener('load', function () {
-        const form = document.getElementById('checkoutForm');
-        if (!form) {
-            console.error('Không tìm thấy form với ID "checkoutForm"');
-            return;
+        function findProductById(productId) {
+            const products = JSON.parse(localStorage.getItem('products')) || []; // Lấy dữ liệu từ localStorage
+            return products.find(product => product.id === productId);
         }
-
-        form.addEventListener('submit', async function (event) {
-            event.preventDefault(); // Ngăn submit mặc định trong mọi trường hợp
-
+    
+        document.getElementById('checkoutForm').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Ngăn submit mặc định
+    
+            const form = document.getElementById('checkoutForm'); // Lấy form
+            if (!form) {
+                console.error('Không tìm thấy form với ID "checkoutForm"');
+                return;
+            }
+    
             // Kiểm tra validation của form
             if (!form.checkValidity()) {
                 event.stopPropagation();
                 form.classList.add('was-validated');
                 return;
             }
-
-            // Thu thập dữ liệu từ form
-            const customerData = {
-                name: document.getElementById('name')?.value || '',
-                phone: document.getElementById('phone')?.value || '',
-                city: document.getElementById('city')?.value || '',
-                district: document.getElementById('district')?.value || '',
-                ward: document.getElementById('ward')?.value || '',
-                address: document.getElementById('address')?.value || '',
-                notes: document.getElementById('notes')?.value || '',
-                createAccount: document.getElementById('create-account')?.checked || false,
-                orderDetails: [
-                    {
-                        productId: '123',
-                        productName: 'Áo thun nam',
-                        quantity: 2,
-                        price: 200000
-                    },
-                    {
-                        productId: '456',
-                        productName: 'Quần short kaki nam',
-                        quantity: 1,
-                        price: 300000
-                    }
-                ]
-            };
-
+    
             try {
+                // Thu thập dữ liệu từ form
+                const carts = JSON.parse(localStorage.getItem('carts')) || []; // Lấy dữ liệu từ localStorage
+                if (carts.length === 0) {
+                    alert('Giỏ hàng của bạn đang trống. Vui lòng thêm sản phẩm trước khi đặt hàng.');
+                    return;
+                }
+    
+                const orderDetails = carts.map(item => ({
+                    productId: item.id,
+                    productName: findProductById(item.id)?.name || 'Không xác định',
+                    quantity: item.quantity,
+                    price: findProductById(item.id)?.price || 0,
+                }));
+    
+                // Lấy dữ liệu địa chỉ từ API
+                const addressData = await axios.get('https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json');
+                const addressDetails = getAddressDetails(addressData.data);
+    
+                console.log('Chi tiết đơn hàng:', orderDetails);
+                console.log('Thông tin địa chỉ:', addressDetails);
+    
+                const customerData = {
+                    name: document.getElementById('name')?.value || '',
+                    phone: document.getElementById('phone')?.value || '',
+                    city: addressDetails.cityName,
+                    district: addressDetails.districtName,
+                    ward: addressDetails.wardName,
+                    address: document.getElementById('address')?.value || '',
+                    notes: document.getElementById('notes')?.value || '',
+                    createAccount: document.getElementById('create-account')?.checked || false,
+                    orderDetails: orderDetails // Dữ liệu giỏ hàng từ localStorage
+                };
+    
+                console.log('Dữ liệu khách hàng:', customerData);
+    
                 // Gửi dữ liệu đến API backend
-                const response = await axios.post('http://localhost:5000/api/orders', customerData);
+                const response = await axios.post('http://localhost:3000/api/orders', customerData);
                 console.log('Phản hồi từ API:', response.data);
-
-                // Backend trả về status 201 (Created) thay vì 200, nên kiểm tra cả hai
+    
+                // Kiểm tra phản hồi từ API
                 if (response.status === 201 || response.status === 200) {
                     const orderId = response.data.orderId;
                     if (orderId) {
+                        // Xóa giỏ hàng khỏi localStorage sau khi đặt hàng thành công
+                        localStorage.removeItem('carts');
+                        console.log('Dữ liệu giỏ hàng đã được xóa khỏi localStorage.');
+    
+                        // Chuyển hướng đến trang hoàn tất đơn hàng
                         window.location.href = `./order-complete.html?orderId=${orderId}`;
                     } else {
                         alert('Không nhận được mã đơn hàng từ server. Vui lòng thử lại.');
@@ -579,11 +595,22 @@
                     alert('Không thể kết nối đến server. Vui lòng kiểm tra kết nối mạng.');
                 }
             }
-
+    
             form.classList.add('was-validated');
         });
-    });
-})();
+    
+        // Hàm lấy thông tin địa chỉ đầy đủ
+        function getAddressDetails(data) {
+            const selectedCity = data.find((n) => n.Id === document.getElementById('city').value);
+            const selectedDistrict = selectedCity?.Districts.find((n) => n.Id === document.getElementById('district').value);
+            const selectedWard = selectedDistrict?.Wards.find((n) => n.Id === document.getElementById('ward').value);
+    
+            return {
+                cityName: selectedCity?.Name || '',
+                districtName: selectedDistrict?.Name || '',
+                wardName: selectedWard?.Name || '',
+            };
+        }
     </script>
 </body>
 

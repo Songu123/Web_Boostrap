@@ -40,6 +40,33 @@ function renderCity(data) {
   };
 }
 
+function getAddressDetails(data) {
+  const selectedCity = data.find((n) => n.Id === citis.value);
+  const selectedDistrict = selectedCity?.Districts.find((n) => n.Id === district.value);
+  const selectedWard = selectedDistrict?.Wards.find((n) => n.Id === ward.value);
+
+  return {
+    cityName: selectedCity?.Name || '',
+    districtName: selectedDistrict?.Name || '',
+    wardName: selectedWard?.Name || '',
+  };
+}
+
+// Ví dụ sử dụng
+document.getElementById('checkoutForm').addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  // Lấy dữ liệu địa chỉ đầy đủ
+  promise.then(function (result) {
+    const addressDetails = getAddressDetails(result.data);
+
+    console.log('Thông tin địa chỉ:', addressDetails);
+
+    // Bạn có thể sử dụng addressDetails.cityName, addressDetails.districtName, addressDetails.wardName
+    // để lưu vào dữ liệu gửi đi
+  });
+});
+
 // End lấy thông tin Tỉnh thành, Quận huyện, Phường xã
 
 // Hàm lấy dữ liệu từ localstorage
